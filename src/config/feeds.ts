@@ -518,6 +518,12 @@ const FINANCE_FEEDS: Record<string, Feed[]> = {
     { name: 'Gulf Investments', url: rss('https://news.google.com/rss/search?q=("Saudi+Arabia"+OR+"UAE"+OR+"Abu+Dhabi")+investment+infrastructure+when:7d&hl=en-US&gl=US&ceid=US:en') },
     { name: 'Vision 2030', url: rss('https://news.google.com/rss/search?q="Vision+2030"+(project+OR+investment+OR+announced)+when:14d&hl=en-US&gl=US&ceid=US:en') },
   ],
+  bricsNews: [
+    { name: 'BRICS', url: rss('https://news.google.com/rss/search?q=BRICS+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'New Development Bank', url: rss('https://news.google.com/rss/search?q="New+Development+Bank"+OR+NDB+BRICS+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'BRICS Investment', url: rss('https://news.google.com/rss/search?q=(BRICS+OR+"Brazil+Russia+India+China+South+Africa")+investment+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'BRICS Expansion', url: rss('https://news.google.com/rss/search?q=BRICS+expansion+OR+members+when:7d&hl=en-US&gl=US&ceid=US:en') },
+  ],
 };
 
 // Finance & tesserect only
@@ -532,6 +538,7 @@ export const SOURCE_REGION_MAP: Record<string, { labelKey: string; feedKeys: str
   dealsCorpFin: { labelKey: 'header.sourceRegionDeals', feedKeys: ['institutional', 'derivatives'] },
   finRegulation: { labelKey: 'header.sourceRegionFinRegulation', feedKeys: ['regulation'] },
   gulfMena: { labelKey: 'header.sourceRegionGulfMena', feedKeys: ['gccNews'] },
+  brics: { labelKey: 'header.sourceRegionBrics', feedKeys: ['bricsNews'] },
 };
 
 export const INTEL_SOURCES: Feed[] = [

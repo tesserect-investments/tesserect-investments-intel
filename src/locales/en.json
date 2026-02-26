@@ -123,6 +123,7 @@
     "sourceRegionDeals": "Deals & Corporate",
     "sourceRegionFinRegulation": "Financial Regulation",
     "sourceRegionGulfMena": "Gulf & MENA",
+    "sourceRegionBrics": "BRICS",
     "filterPanels": "Filter panels...",
     "panelCatCore": "Core",
     "panelCatIntelligence": "Intelligence",
@@ -140,6 +141,7 @@
     "panelCatCentralBanks": "Central Banks & Econ",
     "panelCatDeals": "Deals & Institutional",
     "panelCatGulfMena": "Gulf & MENA",
+    "panelCatBrics": "BRICS",
     "panelCatTradePolicy": "Trade Policy"
   },
   "panels": {
@@ -167,6 +169,7 @@
     "gov": "Government",
     "thinktanks": "Think Tanks",
     "polymarket": "Predictions",
+    "bricsNews": "BRICS News & Investments",
     "commodities": "Commodities",
     "forexRates": "Forex (Africa, MENA, Asia)",
     "economic": "Economic Indicators",

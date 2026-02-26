@@ -35,6 +35,7 @@ const FINANCE_PANELS: Record<string, PanelConfig> = {
   stablecoins: { name: 'Stablecoins', enabled: false, priority: 2 },
   'gcc-investments': { name: 'GCC Investments', enabled: true, priority: 1 },
   gccNews: { name: 'GCC Business News', enabled: true, priority: 2 },
+  bricsNews: { name: 'BRICS News & Investments', enabled: true, priority: 1 },
   polymarket: { name: 'Predictions', enabled: true, priority: 2 },
   monitors: { name: 'My Monitors', enabled: false, priority: 2 },
 };
@@ -211,6 +212,11 @@ export const PANEL_CATEGORY_MAP: Record<string, { labelKey: string; panelKeys: s
   gulfMena: {
     labelKey: 'header.panelCatGulfMena',
     panelKeys: ['gcc-investments', 'gccNews', 'monitors'],
+    variants: ['finance', 'tesserect'],
+  },
+  brics: {
+    labelKey: 'header.panelCatBrics',
+    panelKeys: ['bricsNews'],
     variants: ['finance', 'tesserect'],
   },
 };
