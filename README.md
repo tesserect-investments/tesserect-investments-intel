@@ -1262,6 +1262,23 @@ The `.env.example` file documents every variable with descriptions and registrat
 | **UI**            | `VITE_VARIANT`, `VITE_MAP_INTERACTION_MODE` (`flat` or `3d`, default `3d`) | N/A                                        |
 | **Observability** | `VITE_SENTRY_DSN` (optional, empty disables reporting)                     | N/A                                        |
 
+### Activated API Keys (intel.tesserect.com)
+
+The following environment variables are configured for the Tesserect dashboard. Set these in your deployment (e.g. Vercel) or in `.env.local` for local development.
+
+| Variable | Purpose |
+|----------|---------|
+| **OPENROUTER_API_KEY** | AI summarization fallback. [Get key](https://openrouter.ai/) |
+| **UPSTASH_REDIS_REST_URL** | Redis cache for AI and API responses. [Upstash](https://upstash.com/) |
+| **UPSTASH_REDIS_REST_TOKEN** | Redis auth token. (Same as above.) |
+| **FINNHUB_API_KEY** | Stock and market quotes. [Get key](https://finnhub.io/) |
+| **FRED_API_KEY** | Economic indicators (Federal Reserve data). [Get key](https://fred.stlouisfed.org/docs/api/api_key.html) |
+| **WTO_API_KEY** | Trade Policy panel (restrictions, tariffs, flows, barriers). [WTO API Portal](https://apiportal.wto.org/) |
+| **AISSTREAM_API_KEY** | Live vessel positions (AIS). [Get key](https://aisstream.io/) |
+| **VITE_VARIANT** | Build variant: `finance` or `tesserect`. Use `tesserect` for intel.tesserect.com. |
+
+All of the above are set for **All Environments** in production. Keep keys secret; do not commit them to the repo.
+
 See [`.env.example`](./.env.example) for the complete list with registration links.
 
 ---

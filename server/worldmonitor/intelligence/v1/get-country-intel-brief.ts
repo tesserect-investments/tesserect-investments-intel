@@ -15,9 +15,47 @@ import { CHROME_UA } from '../../../_shared/constants';
 // ========================================================================
 
 const INTEL_CACHE_TTL = 7200;
+const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
+const OPENROUTER_MODEL = 'openrouter/free'; // free tier; same as news summarization
 
 // ========================================================================
-// RPC handler
+// Helpers: call OpenAI-compatible chat API and return brief text
+// ========================================================================
+
+async function callChatApi(
+  url: string,
+  apiKey: string,
+  model: string,
+  systemPrompt: string,
+  userContent: string,
+  extraHeaders: Record<string, string> = {},
+): Promise<string> {
+  const resp = await fetch(url, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+      'User-Agent': CHROME_UA,
+      ...extraHeaders,
+    },
+    body: JSON.stringify({
+      model,
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: userContent },
+      ],
+      temperature: 0.4,
+      max_tokens: 900,
+    }),
+    signal: AbortSignal.timeout(UPSTREAM_TIMEOUT_MS),
+  });
+  if (!resp.ok) return '';
+  const data = (await resp.json()) as { choices?: Array<{ message?: { content?: string } }> };
+  return data.choices?.[0]?.message?.content?.trim() || '';
+}
+
+// ========================================================================
+// RPC handler: try Groq first, then OpenRouter
 // ========================================================================
 
 export async function getCountryIntelBrief(
@@ -28,12 +66,13 @@ export async function getCountryIntelBrief(
     countryCode: req.countryCode,
     countryName: '',
     brief: '',
-    model: GROQ_MODEL,
+    model: '',
     generatedAt: Date.now(),
   };
 
-  const apiKey = process.env.GROQ_API_KEY;
-  if (!apiKey) return empty;
+  const groqKey = process.env.GROQ_API_KEY;
+  const openRouterKey = process.env.OPENROUTER_API_KEY;
+  if (!groqKey && !openRouterKey) return empty;
 
   const cacheKey = `ci-sebuf:v1:${req.countryCode}`;
   const cached = (await getCachedJson(cacheKey)) as GetCountryIntelBriefResponse | null;
@@ -41,6 +80,7 @@ export async function getCountryIntelBrief(
 
   const countryName = TIER1_COUNTRIES[req.countryCode] || req.countryCode;
   const dateStr = new Date().toISOString().split('T')[0];
+  const userContent = `Country: ${countryName} (${req.countryCode})`;
 
   const systemPrompt = `You are a senior intelligence analyst providing comprehensive country situation briefs. Current date: ${dateStr}. Provide geopolitical context appropriate for the current date.
 
@@ -57,37 +97,38 @@ Rules:
 - No speculation beyond what data supports
 - Use plain language, not jargon`;
 
-  try {
-    const resp = await fetch(GROQ_API_URL, {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json', 'User-Agent': CHROME_UA },
-      body: JSON.stringify({
-        model: GROQ_MODEL,
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: `Country: ${countryName} (${req.countryCode})` },
-        ],
-        temperature: 0.4,
-        max_tokens: 900,
-      }),
-      signal: AbortSignal.timeout(UPSTREAM_TIMEOUT_MS),
-    });
+  let brief = '';
+  let model = '';
 
-    if (!resp.ok) return empty;
-    const data = (await resp.json()) as { choices?: Array<{ message?: { content?: string } }> };
-    const brief = data.choices?.[0]?.message?.content?.trim() || '';
-
-    const result: GetCountryIntelBriefResponse = {
-      countryCode: req.countryCode,
-      countryName,
-      brief,
-      model: GROQ_MODEL,
-      generatedAt: Date.now(),
-    };
-
-    if (brief) await setCachedJson(cacheKey, result, INTEL_CACHE_TTL);
-    return result;
-  } catch {
-    return empty;
+  if (groqKey) {
+    try {
+      brief = await callChatApi(GROQ_API_URL, groqKey, GROQ_MODEL, systemPrompt, userContent);
+      model = GROQ_MODEL;
+    } catch {
+      /* try OpenRouter next */
+    }
   }
+
+  if (!brief && openRouterKey) {
+    try {
+      brief = await callChatApi(OPENROUTER_API_URL, openRouterKey, OPENROUTER_MODEL, systemPrompt, userContent, {
+        'HTTP-Referer': 'https://intel.tesserect.com',
+        'X-Title': 'Tesserect',
+      });
+      model = OPENROUTER_MODEL;
+    } catch {
+      /* already empty */
+    }
+  }
+
+  const result: GetCountryIntelBriefResponse = {
+    countryCode: req.countryCode,
+    countryName,
+    brief,
+    model: model || (groqKey ? GROQ_MODEL : 'openrouter'),
+    generatedAt: Date.now(),
+  };
+
+  if (brief) await setCachedJson(cacheKey, result, INTEL_CACHE_TTL);
+  return result;
 }
