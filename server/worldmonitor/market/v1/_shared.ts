@@ -25,10 +25,13 @@ export async function fetchYahooQuotesBatch(
   return results;
 }
 
-// Yahoo-only symbols: indices and futures not on Finnhub free tier
+// Yahoo-only symbols: indices, futures, and forex (not on Finnhub free tier)
 export const YAHOO_ONLY_SYMBOLS = new Set([
   '^GSPC', '^DJI', '^IXIC', '^VIX',
   'GC=F', 'CL=F', 'NG=F', 'SI=F', 'HG=F',
+  'USDZAR=X', 'USDTRY=X', 'USDAED=X', 'EURZAR=X',
+  'USDNGN=X', 'USDEGP=X', 'USDCNY=X', 'USDJPY=X',
+  'USDINR=X', 'USDSAR=X', 'USDKWD=X', 'USDQAR=X', 'EURTRY=X',
 ]);
 
 // Known crypto IDs and their metadata

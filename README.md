@@ -1255,7 +1255,7 @@ The `.env.example` file documents every variable with descriptions and registrat
 | **AI (Local)**    | `OLLAMA_API_URL`, `OLLAMA_MODEL`                                           | Free (runs on your hardware)               |
 | **AI (Cloud)**    | `GROQ_API_KEY`, `OPENROUTER_API_KEY`                                       | 14,400 req/day (Groq), 50/day (OpenRouter) |
 | **Cache**         | `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`                       | 10K commands/day                           |
-| **Markets**       | `FINNHUB_API_KEY`, `FRED_API_KEY`, `EIA_API_KEY`                           | All free tier                              |
+| **Markets**       | `FINNHUB_API_KEY`, `FRED_API_KEY` (deprecated), `EIA_API_KEY`               | All free tier; prefer World Bank/IMF/ECB for economic indicators |
 | **Tracking**      | `WINGBITS_API_KEY`, `AISSTREAM_API_KEY`                                    | Free                                       |
 | **Geopolitical**  | `ACLED_ACCESS_TOKEN`, `CLOUDFLARE_API_TOKEN`, `NASA_FIRMS_API_KEY`         | Free for researchers                       |
 | **Relay**         | `WS_RELAY_URL`, `VITE_WS_RELAY_URL`, `OPENSKY_CLIENT_ID/SECRET`            | Self-hosted                                |
@@ -1272,7 +1272,7 @@ The following environment variables are configured for the Tesserect dashboard. 
 | **UPSTASH_REDIS_REST_URL** | Redis cache for AI and API responses. [Upstash](https://upstash.com/) |
 | **UPSTASH_REDIS_REST_TOKEN** | Redis auth token. (Same as above.) |
 | **FINNHUB_API_KEY** | Stock and market quotes. [Get key](https://finnhub.io/) |
-| **FRED_API_KEY** | Economic indicators (Federal Reserve data). [Get key](https://fred.stlouisfed.org/docs/api/api_key.html) |
+| **FRED_API_KEY** | Economic indicators (US Federal Reserve data). **Deprecated** — prefer World Bank / IMF / ECB for multi-region coverage. [Get key](https://fred.stlouisfed.org/docs/api/api_key.html) |
 | **WTO_API_KEY** | Trade Policy panel (restrictions, tariffs, flows, barriers). [WTO API Portal](https://apiportal.wto.org/) |
 | **AISSTREAM_API_KEY** | Live vessel positions (AIS). [Get key](https://aisstream.io/) |
 | **VITE_VARIANT** | Build variant: `finance` or `tesserect`. Use `tesserect` for intel.tesserect.com. |
@@ -1280,6 +1280,27 @@ The following environment variables are configured for the Tesserect dashboard. 
 All of the above are set for **All Environments** in production. Keep keys secret; do not commit them to the repo.
 
 See [`.env.example`](./.env.example) for the complete list with registration links.
+
+### Economic data APIs
+
+Regional focus order: **Africa → MENA → Asia → EU → South America → North America**.
+
+#### Minimum set (free tier)
+
+| API | Coverage | Auth | Use |
+|-----|----------|------|-----|
+| **World Bank** | All regions (Africa, MENA, Asia, EU, Latam, North America) | None | Development indicators by country (GDP, inflation, etc.). `https://api.worldbank.org/v2/...` |
+| **IMF** | Global (WEO, Fiscal Monitor, etc.) | None | Macro time series via [DataMapper](https://www.imf.org/external/datamapper/api/help) or SDMX at [data.imf.org](https://data.imf.org/en/Resource-Pages/IMF-API) |
+| **ECB** | Euro area / EU | None | SDMX API at [data-api.ecb.europa.eu](https://data.ecb.europa.eu/help/api/data) — policy rates, HICP, GDP, unemployment |
+| **FRED** | US (and limited international) | Free API key | **Deprecated for new use.** Keep for North America until migration to World Bank/IMF/ECB. [Get key](https://fred.stlouisfed.org/docs/api/api_key.html) |
+
+#### Other (for future use)
+
+| API | Coverage | Free tier | Notes |
+|-----|----------|-----------|--------|
+| **Afristox** | Africa (JSE, NSE, EGX, ZSE, etc.) | 100 calls/day | [afristox.com/api](https://www.afristox.com/api) — indices, FX, market data |
+| **BIS** | Policy rates, FX, credit (many countries) | Free | [bis.org/statistics](https://www.bis.org/statistics/) — bulk/download or documented APIs |
+| **Trading Economics** | 196 countries, 20M+ indicators | Paid only | No free API tier; use for reference only |
 
 ---
 

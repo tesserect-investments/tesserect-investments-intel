@@ -7,6 +7,7 @@ import {
   INTEL_SOURCES,
   SECTORS,
   COMMODITIES,
+  FOREX_PAIRS,
   MARKET_SYMBOLS,
   SITE_VARIANT,
   LAYER_TO_SOURCE,
@@ -78,6 +79,7 @@ import {
   MarketPanel,
   HeatmapPanel,
   CommoditiesPanel,
+  ForexRatesPanel,
   CryptoPanel,
   PredictionPanel,
   MonitorPanel,
@@ -690,6 +692,23 @@ export class DataLoaderManager implements AppModule {
       }
       if (!commoditiesLoaded) {
         commoditiesPanel.renderCommodities([]);
+      }
+
+      const forexRatesPanel = this.ctx.panels['forex-rates'] as ForexRatesPanel | undefined;
+      if (forexRatesPanel) {
+        try {
+          const forexResult = await fetchMultipleStocks(FOREX_PAIRS, {
+            onBatch: (partial) => forexRatesPanel.renderForex(partial.map(mapCommodity)),
+          });
+          const forexMapped = forexResult.data.map(mapCommodity);
+          if (forexMapped.some(d => d.price !== null)) {
+            forexRatesPanel.renderForex(forexMapped);
+          } else {
+            forexRatesPanel.renderForex([]);
+          }
+        } catch {
+          forexRatesPanel.renderForex([]);
+        }
       }
     } catch {
       this.ctx.statusPanel?.updateApi('Finnhub', { status: 'error' });
@@ -1389,6 +1408,7 @@ export class DataLoaderManager implements AppModule {
     }
   }
 
+  /** Loads US economic indicators from FRED. @deprecated Prefer World Bank/IMF/ECB for multi-region; see README. */
   async loadFredData(): Promise<void> {
     const economicPanel = this.ctx.panels['economic'] as EconomicPanel;
     const cbInfo = getCircuitBreakerCooldownInfo('FRED Economic');

@@ -24,6 +24,23 @@ export const COMMODITIES: Commodity[] = [
   { symbol: 'HG=F', name: 'Copper', display: 'COPPER' },
 ];
 
+/** Forex pairs: Africa, MENA, Asia focus (Yahoo Finance symbols) */
+export const FOREX_PAIRS: Commodity[] = [
+  { symbol: 'USDZAR=X', name: 'USD/ZAR', display: 'USD/ZAR' },
+  { symbol: 'USDTRY=X', name: 'USD/TRY', display: 'USD/TRY' },
+  { symbol: 'USDAED=X', name: 'USD/AED', display: 'USD/AED' },
+  { symbol: 'EURZAR=X', name: 'EUR/ZAR', display: 'EUR/ZAR' },
+  { symbol: 'USDNGN=X', name: 'USD/NGN', display: 'USD/NGN' },
+  { symbol: 'USDEGP=X', name: 'USD/EGP', display: 'USD/EGP' },
+  { symbol: 'USDCNY=X', name: 'USD/CNY', display: 'USD/CNY' },
+  { symbol: 'USDJPY=X', name: 'USD/JPY', display: 'USD/JPY' },
+  { symbol: 'USDINR=X', name: 'USD/INR', display: 'USD/INR' },
+  { symbol: 'USDSAR=X', name: 'USD/SAR', display: 'USD/SAR' },
+  { symbol: 'USDKWD=X', name: 'USD/KWD', display: 'USD/KWD' },
+  { symbol: 'USDQAR=X', name: 'USD/QAR', display: 'USD/QAR' },
+  { symbol: 'EURTRY=X', name: 'EUR/TRY', display: 'EUR/TRY' },
+];
+
 export const MARKET_SYMBOLS: MarketSymbol[] = [
   { symbol: '^GSPC', name: 'S&P 500', display: 'SPX' },
   { symbol: '^DJI', name: 'Dow Jones', display: 'DOW' },

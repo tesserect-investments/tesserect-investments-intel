@@ -12,6 +12,7 @@ const FINANCE_PANELS: Record<string, PanelConfig> = {
   insights: { name: 'AI Market Insights', enabled: true, priority: 1 },
   markets: { name: 'Live Markets', enabled: true, priority: 1 },
   'markets-news': { name: 'Markets News', enabled: true, priority: 2 },
+  'forex-rates': { name: 'Forex (Africa, MENA, Asia)', enabled: true, priority: 1 },
   forex: { name: 'Forex & Currencies', enabled: true, priority: 1 },
   bonds: { name: 'Fixed Income', enabled: true, priority: 1 },
   commodities: { name: 'Commodities & Futures', enabled: true, priority: 1 },
@@ -184,7 +185,7 @@ export const PANEL_CATEGORY_MAP: Record<string, { labelKey: string; panelKeys: s
   },
   fixedIncomeFx: {
     labelKey: 'header.panelCatFixedIncomeFx',
-    panelKeys: ['forex', 'bonds'],
+    panelKeys: ['forex-rates', 'forex', 'bonds'],
     variants: ['finance', 'tesserect'],
   },
   finCommodities: {

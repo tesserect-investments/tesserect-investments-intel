@@ -7,6 +7,7 @@ import {
   MarketPanel,
   HeatmapPanel,
   CommoditiesPanel,
+  ForexRatesPanel,
   CryptoPanel,
   PredictionPanel,
   MonitorPanel,
@@ -304,6 +305,11 @@ export class PanelLayoutManager implements AppModule {
 
     const commoditiesPanel = new CommoditiesPanel();
     this.ctx.panels['commodities'] = commoditiesPanel;
+
+    if (SITE_VARIANT === 'finance' || SITE_VARIANT === 'tesserect') {
+      const forexRatesPanel = new ForexRatesPanel();
+      this.ctx.panels['forex-rates'] = forexRatesPanel;
+    }
 
     const predictionPanel = new PredictionPanel();
     this.ctx.panels['polymarket'] = predictionPanel;

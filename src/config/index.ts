@@ -14,7 +14,7 @@ export {
 } from './variants/base';
 
 // Market data (shared)
-export { SECTORS, COMMODITIES, MARKET_SYMBOLS, CRYPTO_MAP } from './markets';
+export { SECTORS, COMMODITIES, FOREX_PAIRS, MARKET_SYMBOLS, CRYPTO_MAP } from './markets';
 
 // Geo data (shared base)
 export { UNDERSEA_CABLES, MAP_URLS } from './geo';

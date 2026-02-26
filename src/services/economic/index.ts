@@ -49,6 +49,9 @@ const emptyBisCreditFallback: GetBisCreditResponse = { entries: [] };
 
 // ========================================================================
 // FRED -- replaces src/services/fred.ts
+// @deprecated Prefer World Bank / IMF / ECB for multi-region economic data
+// (Africa, MENA, Asia, EU, South America). FRED remains for North America
+// until migration. See README "Economic data APIs" section.
 // ========================================================================
 
 export interface FredSeries {

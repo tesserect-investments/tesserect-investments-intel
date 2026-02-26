@@ -109,7 +109,7 @@ export const RUNTIME_FEATURES: RuntimeFeatureDefinition[] = [
   },
   {
     id: 'economicFred',
-    name: 'FRED economic indicators',
+    name: 'FRED economic indicators (deprecated — prefer World Bank/IMF/ECB)',
     description: 'Macro indicators from Federal Reserve Economic Data.',
     requiredSecrets: ['FRED_API_KEY'],
     fallback: 'Economic panel remains available with non-FRED metrics.',
