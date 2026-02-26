@@ -722,7 +722,7 @@ const filterScenariosForVariant = (variant: HarnessVariant): VisualScenario[] =>
 
 const currentHarnessVariant: HarnessVariant = SITE_VARIANT === 'tech'
   ? 'tech'
-  : SITE_VARIANT === 'finance'
+  : (SITE_VARIANT === 'finance' || SITE_VARIANT === 'tesserect')
   ? 'finance'
   : 'full';
 

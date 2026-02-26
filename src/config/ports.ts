@@ -83,6 +83,13 @@ export const PORTS: Port[] = [
   { id: 'nhava_sheva', name: 'Nhava Sheva (JNPT)', lat: 18.95, lon: 72.95, country: 'India', type: 'container', note: "India's busiest container port. Mumbai gateway. 6M+ TEU." },
   { id: 'chennai', name: 'Port of Chennai', lat: 13.10, lon: 80.29, country: 'India', type: 'container', note: "India's 2nd largest. Auto industry. Bay of Bengal." },
   { id: 'mundra', name: 'Mundra Port', lat: 22.73, lon: 69.72, country: 'India', type: 'mixed', note: "India's largest private port. Adani Group." },
+
+  // South Africa (Tesserect trade corridors)
+  { id: 'cape_town', name: 'Port of Cape Town', lat: -33.90, lon: 18.43, country: 'South Africa', type: 'mixed', note: 'Citrus, wine exports. Transnet. Primary SA Atlantic port.' },
+  { id: 'durban', name: 'Port of Durban', lat: -29.87, lon: 31.04, country: 'South Africa', type: 'container', note: "SA's largest container port. Transnet. Gateway to UAE, Asia." },
+  { id: 'port_elizabeth', name: 'Port of Port Elizabeth', lat: -33.96, lon: 25.62, country: 'South Africa', type: 'mixed', note: 'Bulk and container. Transnet. Eastern Cape.' },
+  { id: 'richards_bay', name: 'Port of Richards Bay', lat: -28.78, lon: 32.05, country: 'South Africa', type: 'bulk', note: 'Bulk coal, minerals. Transnet. KwaZulu-Natal.' },
+  { id: 'ambarli', name: 'Ambarli (Istanbul)', lat: 40.98, lon: 28.63, country: 'Turkey', type: 'container', note: "Istanbul's main container port. Marmara Sea. 3M+ TEU." },
 ];
 
 export function getPortsByType(type: PortType): Port[] {

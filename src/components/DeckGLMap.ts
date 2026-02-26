@@ -3018,7 +3018,7 @@ export class DeckGLMap {
         { key: 'natural', label: t('components.deckgl.layers.naturalEvents'), icon: '&#127755;' },
         { key: 'fires', label: t('components.deckgl.layers.fires'), icon: '&#128293;' },
       ]
-      : SITE_VARIANT === 'finance'
+      : (SITE_VARIANT === 'finance' || SITE_VARIANT === 'tesserect')
       ? [
           { key: 'stockExchanges', label: t('components.deckgl.layers.stockExchanges'), icon: '&#127963;' },
           { key: 'financialCenters', label: t('components.deckgl.layers.financialCenters'), icon: '&#128176;' },
@@ -3255,7 +3255,7 @@ export class DeckGLMap {
 
     popup.innerHTML = SITE_VARIANT === 'tech'
       ? techHelpContent
-      : SITE_VARIANT === 'finance'
+      : (SITE_VARIANT === 'finance' || SITE_VARIANT === 'tesserect')
       ? financeHelpContent
       : fullHelpContent;
 
@@ -3303,7 +3303,7 @@ export class DeckGLMap {
           { shape: shapes.circle('rgb(150, 100, 255)'), label: t('components.deckgl.legend.cloudRegion') },
           { shape: shapes.square('rgb(136, 68, 255)'), label: t('components.deckgl.legend.datacenter') },
         ]
-      : SITE_VARIANT === 'finance'
+      : (SITE_VARIANT === 'finance' || SITE_VARIANT === 'tesserect')
       ? [
           { shape: shapes.circle('rgb(255, 215, 80)'), label: t('components.deckgl.legend.stockExchange') },
           { shape: shapes.circle('rgb(0, 220, 150)'), label: t('components.deckgl.legend.financialCenter') },

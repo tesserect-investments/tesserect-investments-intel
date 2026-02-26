@@ -7,7 +7,6 @@ import {
   PlaybackControl,
   StatusPanel,
   MobileWarningModal,
-  PizzIntIndicator,
   CIIPanel,
   PredictionPanel,
 } from '@/components';
@@ -429,13 +428,7 @@ export class EventHandlerManager implements AppModule {
   }
 
   setupPizzIntIndicator(): void {
-    if (SITE_VARIANT === 'tech' || SITE_VARIANT === 'finance' || SITE_VARIANT === 'happy') return;
-
-    this.ctx.pizzintIndicator = new PizzIntIndicator();
-    const headerLeft = this.ctx.container.querySelector('.header-left');
-    if (headerLeft) {
-      headerLeft.appendChild(this.ctx.pizzintIndicator.getElement());
-    }
+    // Finance/tesserect: PizzINT indicator not used
   }
 
   setupExportPanel(): void {

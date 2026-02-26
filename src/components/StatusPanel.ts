@@ -1,4 +1,3 @@
-import { SITE_VARIANT } from '@/config';
 import { h, replaceChildren } from '@/utils/dom-utils';
 
 type StatusLevel = 'ok' | 'warning' | 'error' | 'disabled';
@@ -17,28 +16,15 @@ interface ApiStatus {
   latency?: number;
 }
 
-// Allowlists for each variant
-const TECH_FEEDS = new Set([
-  'Tech', 'Ai', 'Startups', 'Vcblogs', 'RegionalStartups',
-  'Unicorns', 'Accelerators', 'Security', 'Policy', 'Layoffs',
-  'Finance', 'Hardware', 'Cloud', 'Dev', 'Tech Events', 'Crypto',
-  'Markets', 'Events', 'Producthunt', 'Funding', 'Polymarket',
-  'Cyber Threats'
+// Finance/tesserect allowlists
+const FINANCE_FEEDS = new Set([
+  'Markets', 'Forex', 'Bonds', 'Commodities', 'Crypto',
+  'Centralbanks', 'Economic', 'IPO', 'Derivatives', 'Fintech',
+  'Regulation', 'Institutional', 'Analysis', 'GccNews',
+  'Polymarket', 'Weather', 'NetBlocks'
 ]);
-const TECH_APIS = new Set([
-  'RSS Proxy', 'Finnhub', 'CoinGecko', 'Tech Events API', 'Service Status', 'Polymarket',
-  'Cyber Threats API'
-]);
-
-const WORLD_FEEDS = new Set([
-  'Politics', 'Middleeast', 'Tech', 'Ai', 'Finance',
-  'Gov', 'Intel', 'Layoffs', 'Thinktanks', 'Energy',
-  'Polymarket', 'Weather', 'NetBlocks', 'Shipping', 'Military',
-  'Cyber Threats'
-]);
-const WORLD_APIS = new Set([
-  'RSS2JSON', 'Finnhub', 'CoinGecko', 'Polymarket', 'USGS', 'FRED',
-  'AISStream', 'GDELT Doc', 'EIA', 'USASpending', 'PizzINT', 'FIRMS',
+const FINANCE_APIS = new Set([
+  'RSS Proxy', 'Finnhub', 'CoinGecko', 'Polymarket', 'FRED',
   'Cyber Threats API', 'BIS', 'WTO'
 ]);
 
@@ -59,8 +45,8 @@ export class StatusPanel extends Panel {
   }
 
   private init(): void {
-    this.allowedFeeds = SITE_VARIANT === 'tech' ? TECH_FEEDS : WORLD_FEEDS;
-    this.allowedApis = SITE_VARIANT === 'tech' ? TECH_APIS : WORLD_APIS;
+    this.allowedFeeds = FINANCE_FEEDS;
+    this.allowedApis = FINANCE_APIS;
 
     const panel = h('div', { className: 'status-panel hidden' },
       h('div', { className: 'status-panel-header' },

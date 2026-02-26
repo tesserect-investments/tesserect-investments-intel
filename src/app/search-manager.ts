@@ -5,7 +5,7 @@ import type { MapView } from '@/components';
 import type { Command } from '@/config/commands';
 import { SearchModal } from '@/components';
 import { CIIPanel } from '@/components';
-import { SITE_VARIANT, STORAGE_KEYS } from '@/config';
+import { STORAGE_KEYS } from '@/config';
 import { LAYER_PRESETS, LAYER_KEY_MAP } from '@/config/commands';
 import { calculateCII, TIER1_COUNTRIES } from '@/services/country-instability';
 import { CURATED_COUNTRIES } from '@/config/countries';
@@ -49,137 +49,13 @@ export class SearchManager implements AppModule {
   }
 
   private setupSearchModal(): void {
-    const searchOptions = SITE_VARIANT === 'tech'
-      ? {
-        placeholder: t('modals.search.placeholderTech'),
-        hint: t('modals.search.hintTech'),
-      }
-      : SITE_VARIANT === 'happy'
-        ? {
-          placeholder: 'Search or type a command...',
-          hint: 'Good News • Countries • Navigation • Settings',
-        }
-        : SITE_VARIANT === 'finance'
-          ? {
-            placeholder: t('modals.search.placeholderFinance'),
-            hint: t('modals.search.hintFinance'),
-          }
-          : {
-            placeholder: t('modals.search.placeholder'),
-            hint: t('modals.search.hint'),
-          };
+    const searchOptions = {
+      placeholder: t('modals.search.placeholderFinance'),
+      hint: t('modals.search.hintFinance'),
+    };
     this.ctx.searchModal = new SearchModal(this.ctx.container, searchOptions);
 
-    if (SITE_VARIANT === 'happy') {
-      // Happy variant: no geopolitical/military/infrastructure sources
-    } else if (SITE_VARIANT === 'tech') {
-      this.ctx.searchModal.registerSource('techcompany', TECH_COMPANIES.map(c => ({
-        id: c.id,
-        title: c.name,
-        subtitle: `${c.sector} ${c.city} ${c.keyProducts?.join(' ') || ''}`.trim(),
-        data: c,
-      })));
-
-      this.ctx.searchModal.registerSource('ailab', AI_RESEARCH_LABS.map(l => ({
-        id: l.id,
-        title: l.name,
-        subtitle: `${l.type} ${l.city} ${l.focusAreas?.join(' ') || ''}`.trim(),
-        data: l,
-      })));
-
-      this.ctx.searchModal.registerSource('startup', STARTUP_ECOSYSTEMS.map(s => ({
-        id: s.id,
-        title: s.name,
-        subtitle: `${s.ecosystemTier} ${s.topSectors?.join(' ') || ''} ${s.notableStartups?.join(' ') || ''}`.trim(),
-        data: s,
-      })));
-
-      this.ctx.searchModal.registerSource('datacenter', AI_DATA_CENTERS.map(d => ({
-        id: d.id,
-        title: d.name,
-        subtitle: `${d.owner} ${d.chipType || ''}`.trim(),
-        data: d,
-      })));
-
-      this.ctx.searchModal.registerSource('cable', UNDERSEA_CABLES.map(c => ({
-        id: c.id,
-        title: c.name,
-        subtitle: c.major ? 'Major internet backbone' : 'Undersea cable',
-        data: c,
-      })));
-
-      this.ctx.searchModal.registerSource('techhq', TECH_HQS.map(h => ({
-        id: h.id,
-        title: h.company,
-        subtitle: `${h.type === 'faang' ? 'Big Tech' : h.type === 'unicorn' ? 'Unicorn' : 'Public'} • ${h.city}, ${h.country}`,
-        data: h,
-      })));
-
-      this.ctx.searchModal.registerSource('accelerator', ACCELERATORS.map(a => ({
-        id: a.id,
-        title: a.name,
-        subtitle: `${a.type} • ${a.city}, ${a.country}${a.notable ? ` • ${a.notable.slice(0, 2).join(', ')}` : ''}`,
-        data: a,
-      })));
-    } else {
-      this.ctx.searchModal.registerSource('hotspot', INTEL_HOTSPOTS.map(h => ({
-        id: h.id,
-        title: h.name,
-        subtitle: `${h.subtext || ''} ${h.keywords?.join(' ') || ''} ${h.description || ''}`.trim(),
-        data: h,
-      })));
-
-      this.ctx.searchModal.registerSource('conflict', CONFLICT_ZONES.map(c => ({
-        id: c.id,
-        title: c.name,
-        subtitle: `${c.parties?.join(' ') || ''} ${c.keywords?.join(' ') || ''} ${c.description || ''}`.trim(),
-        data: c,
-      })));
-
-      this.ctx.searchModal.registerSource('base', MILITARY_BASES.map(b => ({
-        id: b.id,
-        title: b.name,
-        subtitle: `${b.type} ${b.description || ''}`.trim(),
-        data: b,
-      })));
-
-      this.ctx.searchModal.registerSource('pipeline', PIPELINES.map(p => ({
-        id: p.id,
-        title: p.name,
-        subtitle: `${p.type} ${p.operator || ''} ${p.countries?.join(' ') || ''}`.trim(),
-        data: p,
-      })));
-
-      this.ctx.searchModal.registerSource('cable', UNDERSEA_CABLES.map(c => ({
-        id: c.id,
-        title: c.name,
-        subtitle: c.major ? 'Major cable' : '',
-        data: c,
-      })));
-
-      this.ctx.searchModal.registerSource('datacenter', AI_DATA_CENTERS.map(d => ({
-        id: d.id,
-        title: d.name,
-        subtitle: `${d.owner} ${d.chipType || ''}`.trim(),
-        data: d,
-      })));
-
-      this.ctx.searchModal.registerSource('nuclear', NUCLEAR_FACILITIES.map(n => ({
-        id: n.id,
-        title: n.name,
-        subtitle: `${n.type} ${n.operator || ''}`.trim(),
-        data: n,
-      })));
-
-      this.ctx.searchModal.registerSource('irradiator', GAMMA_IRRADIATORS.map(g => ({
-        id: g.id,
-        title: `${g.city}, ${g.country}`,
-        subtitle: g.organization || '',
-        data: g,
-      })));
-    }
-
-    if (SITE_VARIANT === 'finance') {
+    {
       this.ctx.searchModal.registerSource('exchange', STOCK_EXCHANGES.map(e => ({
         id: e.id,
         title: `${e.shortName} - ${e.name}`,

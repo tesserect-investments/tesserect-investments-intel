@@ -1,64 +1,54 @@
-# World Monitor
+# Tesserect Investments — Trade Intelligence Dashboard
 
-**Real-time global intelligence dashboard** — AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface.
+**Commodity trade facilitation dashboard** — Real-time markets, trade corridors, and economic intelligence for citrus, wine, precious metals, and agricultural exports. South Africa–focused trade intelligence.
 
-[![GitHub stars](https://img.shields.io/github/stars/koala73/worldmonitor?style=social)](https://github.com/koala73/worldmonitor/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/koala73/worldmonitor?style=social)](https://github.com/koala73/worldmonitor/network/members)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Last commit](https://img.shields.io/github/last-commit/koala73/worldmonitor)](https://github.com/koala73/worldmonitor/commits/main)
-[![Latest release](https://img.shields.io/github/v/release/koala73/worldmonitor?style=flat)](https://github.com/koala73/worldmonitor/releases/latest)
 
 <p align="center">
-  <a href="https://worldmonitor.app"><img src="https://img.shields.io/badge/Web_App-worldmonitor.app-blue?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Web App"></a>&nbsp;
-  <a href="https://tech.worldmonitor.app"><img src="https://img.shields.io/badge/Tech_Variant-tech.worldmonitor.app-0891b2?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Tech Variant"></a>&nbsp;
-  <a href="https://finance.worldmonitor.app"><img src="https://img.shields.io/badge/Finance_Variant-finance.worldmonitor.app-059669?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Finance Variant"></a>
+  <a href="https://intel.tesserect.com"><img src="https://img.shields.io/badge/Dashboard-intel.tesserect.com-059669?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Trade Dashboard"></a>&nbsp;
+  <a href="https://www.tesserect.co.za"><img src="https://img.shields.io/badge/Tesserect-tesserect.co.za-32705b?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Tesserect"></a>
 </p>
 
 <p align="center">
-  <a href="https://worldmonitor.app/api/download?platform=windows-exe"><img src="https://img.shields.io/badge/Download-Windows_(.exe)-0078D4?style=for-the-badge&logo=windows&logoColor=white" alt="Download Windows"></a>&nbsp;
-  <a href="https://worldmonitor.app/api/download?platform=macos-arm64"><img src="https://img.shields.io/badge/Download-macOS_Apple_Silicon-000000?style=for-the-badge&logo=apple&logoColor=white" alt="Download macOS ARM"></a>&nbsp;
-  <a href="https://worldmonitor.app/api/download?platform=macos-x64"><img src="https://img.shields.io/badge/Download-macOS_Intel-555555?style=for-the-badge&logo=apple&logoColor=white" alt="Download macOS Intel"></a>&nbsp;
-  <a href="https://worldmonitor.app/api/download?platform=linux-appimage"><img src="https://img.shields.io/badge/Download-Linux_(.AppImage)-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Download Linux"></a>
+  <a href="https://intel.tesserect.com/api/download?platform=windows-exe"><img src="https://img.shields.io/badge/Download-Windows_(.exe)-0078D4?style=for-the-badge&logo=windows&logoColor=white" alt="Download Windows"></a>&nbsp;
+  <a href="https://intel.tesserect.com/api/download?platform=macos-arm64"><img src="https://img.shields.io/badge/Download-macOS_Apple_Silicon-000000?style=for-the-badge&logo=apple&logoColor=white" alt="Download macOS ARM"></a>&nbsp;
+  <a href="https://intel.tesserect.com/api/download?platform=macos-x64"><img src="https://img.shields.io/badge/Download-macOS_Intel-555555?style=for-the-badge&logo=apple&logoColor=white" alt="Download macOS Intel"></a>&nbsp;
+  <a href="https://intel.tesserect.com/api/download?platform=linux-appimage"><img src="https://img.shields.io/badge/Download-Linux_(.AppImage)-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Download Linux"></a>
 </p>
 
 <p align="center">
-  <a href="./docs/DOCUMENTATION.md"><strong>Full Documentation</strong></a> &nbsp;·&nbsp;
-  <a href="https://github.com/koala73/worldmonitor/releases/latest"><strong>All Releases</strong></a>
+  <a href="./docs/DOCUMENTATION.md"><strong>Full Documentation</strong></a>
 </p>
 
-![World Monitor Dashboard](new-world-monitor.png)
+![Tesserect Trade Dashboard](new-world-monitor.png)
 
 ---
 
-## Why World Monitor?
+## Why Tesserect?
 
 | Problem                            | Solution                                                                                                   |
 | ---------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| News scattered across 100+ sources | **Single unified dashboard** with 100+ curated feeds                                                       |
-| No geospatial context for events   | **Interactive map** with 36+ toggleable data layers                                                        |
+| Trade news scattered across sources| **Unified dashboard** with curated finance and commodity feeds                                            |
+| No geospatial context for trade    | **Interactive map** with stock exchanges, financial centers, central banks, commodity hubs, and trade routes |
 | Information overload               | **AI-synthesized briefs** with focal point detection and local LLM support                                 |
 | Crypto/macro signal noise          | **7-signal market radar** with composite BUY/CASH verdict                                                  |
-| Expensive OSINT tools ($$$)        | **100% free & open source**                                                                                |
 | Static news feeds                  | **Real-time updates** with live video streams                                                              |
 | Cloud-dependent AI tools           | **Run AI locally** with Ollama/LM Studio — no API keys, no data leaves your machine                       |
 | Web-only dashboards                | **Native desktop app** (Tauri) for macOS, Windows, and Linux + installable PWA with offline map support    |
-| Flat 2D maps                       | **3D WebGL globe** with deck.gl rendering and 36+ toggleable data layers                                   |
-| Siloed financial data              | **Finance variant** with 92 stock exchanges, 19 financial centers, 13 central banks, BIS data, WTO trade policy, and Gulf FDI tracking |
-| Undocumented, fragile APIs         | **Proto-first API contracts** — 19 typed services with auto-generated clients, servers, and OpenAPI docs   |
+| Flat 2D maps                       | **3D WebGL globe** with deck.gl rendering and finance-focused data layers                                 |
+| Siloed financial data              | **92 stock exchanges**, 19 financial centers, 13 central banks, BIS data, WTO trade policy, and Gulf FDI tracking |
 
 ---
 
-## Live Demos
+## Live Dashboard
 
-| Variant             | URL                                                          | Focus                                            |
-| ------------------- | ------------------------------------------------------------ | ------------------------------------------------ |
-| **World Monitor**   | [worldmonitor.app](https://worldmonitor.app)                 | Geopolitics, military, conflicts, infrastructure |
-| **Tech Monitor**    | [tech.worldmonitor.app](https://tech.worldmonitor.app)       | Startups, AI/ML, cloud, cybersecurity            |
-| **Finance Monitor** | [finance.worldmonitor.app](https://finance.worldmonitor.app) | Global markets, trading, central banks, Gulf FDI |
-| **Happy Monitor**   | [happy.worldmonitor.app](https://happy.worldmonitor.app)     | Good news, positive trends, uplifting stories    |
+| Variant   | URL                                                          | Focus                                                                 |
+| --------- | ------------------------------------------------------------ | --------------------------------------------------------------------- |
+| **Tesserect** | [intel.tesserect.com](https://intel.tesserect.com)         | Commodity trade, markets, central banks, trade policy, Gulf FDI       |
+| **Finance**   | [intel.tesserect.com](https://intel.tesserect.com) (Finance mode) | Global markets, trading, stock exchanges, economic indicators |
 
-All four variants run from a single codebase — switch between them with one click via the header bar.
+Switch between Finance and Tesserect variants via the header bar. Both run from the same codebase.
 
 ---
 
@@ -150,7 +140,7 @@ All four variants run from a single codebase — switch between them with one cl
 </details>
 
 <details>
-<summary><strong>Tech Ecosystem</strong> (Tech variant)</summary>
+<summary><strong>Tech Ecosystem</strong> (Legacy — not in current finance/tesserect builds)</summary>
 
 - Tech company HQs (Big Tech, unicorns, public)
 - Startup hubs with funding data
@@ -175,7 +165,7 @@ All four variants run from a single codebase — switch between them with one cl
 
 ### Live News & Video
 
-- **150+ RSS feeds** across geopolitics, defense, energy, tech, and finance — domain-allowlisted proxy prevents CORS issues. Each variant loads its own curated feed set: ~25 categories for geopolitical, ~20 for tech, ~18 for finance
+- **150+ RSS feeds** across geopolitics, defense, energy, tech, and finance — domain-allowlisted proxy prevents CORS issues. Each variant loads its own curated feed set: ~18 categories for finance and tesserect
 - **8 live video streams** — Bloomberg, Sky News, Al Jazeera, Euronews, DW, France24, CNBC, Al Arabiya — with automatic live detection that scrapes YouTube channel pages every 5 minutes to find active streams
 - **Desktop embed bridge** — YouTube's IFrame API restricts playback in native webviews (error 153). The dashboard detects this and transparently routes through a cloud-hosted embed proxy with bidirectional message passing (play/pause/mute/unmute/loadVideo)
 - **Idle-aware playback** — video players pause and are removed from the DOM after 5 minutes of inactivity, resuming when the user returns. Tab visibility changes also suspend/resume streams
@@ -204,14 +194,14 @@ All four variants run from a single codebase — switch between them with one cl
 - **Native desktop app** for macOS, Windows, and Linux — packages the full dashboard with a local Node.js sidecar that runs all 60+ API handlers locally
 - **OS keychain integration** — API keys stored in the system credential manager (macOS Keychain, Windows Credential Manager), never in plaintext files
 - **Token-authenticated sidecar** — a unique session token prevents other local processes from accessing the sidecar on localhost. Generated per launch using randomized hashing
-- **Cloud fallback** — when a local API handler fails or is missing, requests transparently fall through to the cloud deployment (worldmonitor.app) with origin headers stripped
+- **Cloud fallback** — when a local API handler fails or is missing, requests transparently fall through to the cloud deployment (intel.tesserect.com) with origin headers stripped
 - **Settings window** — dedicated configuration UI (Cmd+,) with three tabs: **LLMs** (Ollama endpoint, model selection, Groq, OpenRouter), **API Keys** (12+ data source credentials with per-key validation), and **Debug & Logs** (traffic log, verbose mode, log files). Each tab runs an independent verification pipeline — saving in the LLMs tab doesn't block API Keys validation
 - **Automatic model discovery** — when you set an Ollama or LM Studio endpoint URL in the LLMs tab, the settings panel immediately queries it for available models (tries Ollama native `/api/tags` first, then OpenAI-compatible `/v1/models`) and populates a dropdown. Embedding models are filtered out. If discovery fails, a manual text input appears as fallback
 - **Cross-window secret sync** — the main dashboard and settings window run in separate webviews with independent JS contexts. Saving a secret in Settings writes to the OS keychain and broadcasts a `localStorage` change event. The main window listens for this event and hot-reloads all secrets without requiring an app restart
 - **Consolidated keychain vault** — all secrets are stored as a single JSON blob in one keychain entry (`secrets-vault`) rather than individual entries per key. This reduces macOS Keychain authorization prompts from 20+ to exactly 1 on each app launch. A one-time migration reads any existing individual entries, consolidates them, and cleans up the old format
 - **Verbose debug mode** — toggle traffic logging with persistent state across restarts. View the last 200 requests with timing, status codes, and error details
 - **DevTools toggle** — Cmd+Alt+I opens the embedded web inspector for debugging
-- **Auto-update checker** — polls the cloud API for new versions every 6 hours. Displays a non-intrusive update badge with direct download link and per-version dismiss. Variant-aware — a Tech Monitor desktop app links to the correct Tech Monitor release asset
+- **Auto-update checker** — polls the cloud API for new versions every 6 hours. Displays a non-intrusive update badge with direct download link and per-version dismiss. Variant-aware — Finance and Tesserect desktop builds link to their respective release assets
 
 ### Progressive Web App
 
@@ -246,7 +236,7 @@ All four variants run from a single codebase — switch between them with one cl
 - **Population exposure estimation** — WorldPop density data estimates civilian population within event-specific radii (50–100km) for conflicts, earthquakes, floods, and wildfires
 - **Trending keywords panel** — real-time display of surging terms across all RSS feeds with spike severity, source count, and AI-generated context summaries
 - **Download banner** — persistent notification for web users linking to native desktop installers for their detected platform
-- **Download API** — `/api/download?platform={windows-exe|windows-msi|macos-arm64|macos-x64|linux-appimage}[&variant={full|tech|finance}]` redirects to the matching GitHub Release asset, with fallback to the releases page
+- **Download API** — `/api/download?platform={windows-exe|windows-msi|macos-arm64|macos-x64|linux-appimage}[&variant={finance|tesserect}]` redirects to the matching GitHub Release asset, with fallback to the releases page
 - **Non-tier country support** — clicking countries outside the 22 tier-1 list opens a brief with available data (news, markets, infrastructure) and a "Limited coverage" badge; country names for non-tier countries resolve via `Intl.DisplayNames`
 - **Feature toggles** — 15 runtime toggles (AI/Ollama, AI/Groq, AI/OpenRouter, FRED economic, EIA energy, internet outages, ACLED conflicts, threat intel feeds, AIS relay, OpenSky, Finnhub, NASA FIRMS) stored in `localStorage`, allowing administrators to enable/disable data sources without rebuilding
 - **AIS chokepoint detection** — the relay server monitors 8 strategic maritime chokepoints (Strait of Hormuz, Suez Canal, Malacca Strait, Bab el-Mandeb, Panama Canal, Taiwan Strait, South China Sea, Turkish Straits) and classifies transiting vessels by naval candidacy using MMSI prefixes, ship type codes, and name patterns
@@ -268,8 +258,8 @@ Map overlay behavior is validated in Playwright using the map harness (`/tests/m
   - `updates protest marker click payload after data refresh`
   - `initializes cluster movement cache on first protest cluster render`
 - Run by variant:
-  - `npm run test:e2e:full -- -g "updates protest marker click payload after data refresh|initializes cluster movement cache on first protest cluster render"`
-  - `npm run test:e2e:tech -- -g "updates protest marker click payload after data refresh|initializes cluster movement cache on first protest cluster render"`
+  - `npm run test:e2e:finance -- -g "updates protest marker click payload after data refresh|initializes cluster movement cache on first protest cluster render"`
+  - `npm run test:e2e:tesserect -- -g "updates protest marker click payload after data refresh|initializes cluster movement cache on first protest cluster render"`
 
 ---
 
@@ -344,7 +334,7 @@ The World Brief is generated by a 4-tier provider chain that prioritizes local c
 All three API tiers (Ollama, Groq, OpenRouter) share a common handler factory (`_summarize-handler.js`) that provides identical behavior:
 
 - **Headline deduplication** — before sending to any LLM, headlines are compared pairwise using word-overlap similarity. Near-duplicates (>60% overlap) are merged, reducing the prompt by 20–40% and preventing the LLM from wasting tokens on repeated stories
-- **Variant-aware prompting** — the system prompt adapts to the active dashboard variant. Geopolitical summaries emphasize conflict escalation and diplomatic shifts; tech summaries focus on funding rounds and AI breakthroughs; finance summaries highlight market movements and central bank signals
+- **Variant-aware prompting** — the system prompt adapts to the active dashboard variant. Finance and tesserect summaries highlight market movements, trade policy, central bank signals, and commodity flows
 - **Language-aware output** — when the UI language is non-English, the prompt instructs the LLM to generate the summary in that language
 - **Redis deduplication** — summaries are cached with a composite key (`summary:v3:{mode}:{variant}:{lang}:{hash}`) so the same headlines viewed by 1,000 concurrent users trigger exactly one LLM call. Cache TTL is 24 hours
 - **Graceful fallback** — if a provider returns `{fallback: true}` (missing API key or endpoint unreachable), the chain silently advances to the next tier. Progress callbacks update the UI to show which provider is being attempted
@@ -355,7 +345,7 @@ The Ollama tier communicates via the OpenAI-compatible `/v1/chat/completions` en
 
 Every news item passes through a three-stage classification pipeline:
 
-1. **Keyword classifier** (instant, `source: 'keyword'`) — pattern-matches against ~120 threat keywords organized by severity tier (critical → high → medium → low → info) and 14 event categories (conflict, protest, disaster, diplomatic, economic, terrorism, cyber, health, environmental, military, crime, infrastructure, tech, general). Keywords use word-boundary regex matching to prevent false positives (e.g., "war" won't match "award"). Each match returns a severity level, category, and confidence score. Variant-specific keyword sets ensure the tech variant doesn't flag "sanctions" in non-geopolitical contexts.
+1. **Keyword classifier** (instant, `source: 'keyword'`) — pattern-matches against ~120 threat keywords organized by severity tier (critical → high → medium → low → info) and 14 event categories (conflict, protest, disaster, diplomatic, economic, terrorism, cyber, health, environmental, military, crime, infrastructure, tech, general). Keywords use word-boundary regex matching to prevent false positives (e.g., "war" won't match "award"). Each match returns a severity level, category, and confidence score. Variant-specific keyword sets tailor classification to finance and trade intelligence contexts.
 
 2. **Browser-side ML** (async, `source: 'ml'`) — Transformers.js runs NER, sentiment analysis, and topic classification directly in the browser with no server dependency. Provides a second classification opinion without any API call.
 
@@ -703,9 +693,9 @@ Resource management is aggressive — iframes are lazy-loaded via Intersection O
 
 ### Desktop Auto-Update
 
-The desktop app checks for new versions by polling `worldmonitor.app/api/version` — once at startup (after a 5-second delay) and then every 6 hours. When a newer version is detected (semver comparison), a non-intrusive update badge appears with a direct link to the GitHub Release page.
+The desktop app checks for new versions by polling `intel.tesserect.com/api/version` — once at startup (after a 5-second delay) and then every 6 hours. When a newer version is detected (semver comparison), a non-intrusive update badge appears with a direct download link.
 
-Update prompts are dismissable per-version — dismissing v2.5.0 won't suppress v2.6.0 notifications. The updater is variant-aware: a Tech Monitor desktop build links to the Tech Monitor release asset, not the full variant.
+Update prompts are dismissable per-version — dismissing v2.5.0 won't suppress v2.6.0 notifications. The updater is variant-aware: Finance and Tesserect desktop builds link to their respective release assets.
 
 The `/api/version` endpoint reads the latest GitHub Release tag and caches the result for 1 hour, so version checks don't hit the GitHub API on every request.
 
@@ -723,10 +713,10 @@ A `theme-changed` CustomEvent is dispatched on toggle, allowing panels with cust
 
 ### Privacy & Offline Architecture
 
-World Monitor is designed so that sensitive intelligence work can run entirely on local hardware with no data leaving the user's machine. The privacy architecture operates at three levels:
+The Tesserect dashboard is designed so that sensitive intelligence work can run entirely on local hardware with no data leaving the user's machine. The privacy architecture operates at three levels:
 
 **Level 1 — Full Cloud (Web App)**
-All processing happens server-side on Vercel Edge Functions. API keys are stored in Vercel environment variables. News feeds are proxied through domain-allowlisted endpoints. AI summaries use Groq or OpenRouter. This is the default for `worldmonitor.app` — convenient but cloud-dependent.
+All processing happens server-side on Vercel Edge Functions. API keys are stored in Vercel environment variables. News feeds are proxied through domain-allowlisted endpoints. AI summaries use Groq or OpenRouter. This is the default for `intel.tesserect.com` — convenient but cloud-dependent.
 
 **Level 2 — Desktop with Cloud APIs (Tauri + Sidecar)**
 The desktop app runs a local Node.js sidecar that mirrors all 60+ cloud API handlers. API keys are stored in the OS keychain (macOS Keychain / Windows Credential Manager), never in plaintext files. Requests are processed locally first; cloud is a transparent fallback for missing handlers. Credential management happens through a native settings window with per-key validation.
@@ -747,7 +737,7 @@ The desktop readiness framework (`desktop-readiness.ts`) catalogs each feature's
 
 ### Product Analytics
 
-World Monitor includes privacy-first product analytics via PostHog to understand usage patterns and improve the dashboard. The implementation enforces strict data safety at multiple levels:
+Tesserect Investments includes privacy-first product analytics via PostHog to understand usage patterns and improve the dashboard. The implementation enforces strict data safety at multiple levels:
 
 **Typed event allowlists** — every analytics event has a schema defining exactly which properties are permitted. Unlisted properties are silently dropped before transmission. This prevents accidental inclusion of sensitive data in analytics payloads, even if a developer passes extra fields.
 
@@ -761,7 +751,7 @@ World Monitor includes privacy-first product analytics via PostHog to understand
 
 **Offline event queue** — the desktop app may launch without network connectivity. Events captured while offline are queued in localStorage (capped at 200 entries) and flushed to PostHog when connectivity is restored. A `window.online` listener triggers automatic flush on reconnection.
 
-**Super properties** — every event automatically carries platform context: variant (world/tech/finance), app version, platform (web/desktop), screen dimensions, viewport size, device pixel ratio, browser language, and desktop OS/arch. This enables segmentation without per-event instrumentation.
+**Super properties** — every event automatically carries platform context: variant (finance/tesserect), app version, platform (web/desktop), screen dimensions, viewport size, device pixel ratio, browser language, and desktop OS/arch. This enables segmentation without per-event instrumentation.
 
 30+ typed events cover core user interactions: app load timing, panel views, LLM summary generation (provider, model, cache status), API key configuration snapshots, map layer toggles, variant switches, country brief opens, theme changes, language changes, search usage, panel resizing, webcam selections, and auto-update interactions.
 
@@ -825,7 +815,7 @@ Polymarket geopolitical markets are queried using tag-based filters (Ukraine, Ir
 
 Once browser-direct succeeds, the system caches this state and skips fallback tiers on subsequent requests. Country-specific markets are fetched by mapping countries to Polymarket tags with name-variant matching (e.g., "Russia" matches titles containing "Russian", "Moscow", "Kremlin", "Putin").
 
-Markets are filtered to exclude sports and entertainment (100+ exclusion keywords), require meaningful price divergence from 50% or volume above $50K, and are ranked by trading volume. Each variant gets different tag sets — geopolitical focus queries politics/world/ukraine/middle-east tags, while tech focus queries ai/crypto/business tags.
+Markets are filtered to exclude sports and entertainment (100+ exclusion keywords), require meaningful price divergence from 50% or volume above $50K, and are ranked by trading volume. Each variant gets different tag sets — finance and tesserect focus on trade, commodities, and economic indicators.
 
 ### Macro Signal Analysis (Market Radar)
 
@@ -930,22 +920,22 @@ This is an approximation, not a substitute for official flow data, but it captur
 
 ---
 
-## Tri-Variant Architecture
+## Dual-Variant Architecture
 
-A single codebase produces three specialized dashboards, each with distinct feeds, panels, map layers, and branding:
+A single codebase produces two specialized dashboards, each with distinct feeds, panels, map layers, and branding:
 
-| Aspect                | World Monitor                                        | Tech Monitor                                    | Finance Monitor                                  |
-| --------------------- | ---------------------------------------------------- | ----------------------------------------------- | ------------------------------------------------ |
-| **Domain**            | worldmonitor.app                                     | tech.worldmonitor.app                           | finance.worldmonitor.app                         |
-| **Focus**             | Geopolitics, military, conflicts                     | AI/ML, startups, cybersecurity                  | Markets, trading, central banks                  |
-| **RSS Feeds**         | ~25 categories (politics, MENA, Africa, think tanks) | ~20 categories (AI, VC blogs, startups, GitHub) | ~18 categories (forex, bonds, commodities, IPOs) |
-| **Panels**            | 45 (strategic posture, CII, cascade, trade policy)   | 31 (AI labs, unicorns, accelerators)            | 31 (forex, bonds, derivatives, trade policy)     |
-| **Unique Map Layers** | Military bases, nuclear facilities, hotspots         | Tech HQs, cloud regions, startup hubs           | Stock exchanges, central banks, Gulf investments |
-| **Desktop App**       | World Monitor.app / .exe / .AppImage                 | Tech Monitor.app / .exe / .AppImage             | Finance Monitor.app / .exe / .AppImage           |
+| Aspect                | Tesserect                                            | Finance                                           |
+| --------------------- | ---------------------------------------------------- | ------------------------------------------------- |
+| **Domain**            | intel.tesserect.com                                  | intel.tesserect.com                               |
+| **Focus**             | Commodity trade, citrus, wine, precious metals, agricultural exports | Global markets, trading, central banks, economic indicators |
+| **RSS Feeds**         | ~18 categories (commodities, trade, agriculture)    | ~18 categories (forex, bonds, commodities, IPOs)  |
+| **Panels**            | 31 (forex, bonds, derivatives, trade policy)         | 31 (forex, bonds, derivatives, trade policy)      |
+| **Unique Map Layers** | Stock exchanges, central banks, Gulf investments      | Stock exchanges, central banks, commodity hubs    |
+| **Desktop App**       | Tesserect.app / .exe / .AppImage                     | Finance Monitor.app / .exe / .AppImage             |
 
-**Build-time selection** — the `VITE_VARIANT` environment variable controls which configuration is bundled. A Vite HTML plugin transforms meta tags, Open Graph data, PWA manifest, and JSON-LD structured data at build time. Each variant tree-shakes unused data files — the finance build excludes military base coordinates and APT group data, while the geopolitical build excludes stock exchange listings.
+**Build-time selection** — the `VITE_VARIANT` environment variable controls which configuration is bundled. A Vite HTML plugin transforms meta tags, Open Graph data, PWA manifest, and JSON-LD structured data at build time. Each variant tree-shakes unused data files.
 
-**Runtime switching** — a variant selector in the header bar (🌍 WORLD | 💻 TECH | 📈 FINANCE) navigates between deployed domains on the web, or sets `localStorage['worldmonitor-variant']` in the desktop app to switch without rebuilding.
+**Runtime switching** — a variant selector in the header bar (📈 FINANCE | 🌐 TESSERECT) navigates between deployed domains on the web, or sets `localStorage['tesserect-variant']` in the desktop app to switch without rebuilding.
 
 ---
 
@@ -965,7 +955,7 @@ A single codebase produces three specialized dashboards, each with distinct feed
 | **Bandwidth efficiency**            | Gzip compression on all relay responses (80% reduction). Content-hash static assets with 1-year immutable cache. Staggered polling intervals prevent synchronized API storms. Animations and polling pause on hidden tabs.                                                                                                                |
 | **Baseline-aware alerting**         | Trending keyword detection uses rolling 2-hour windows against 7-day baselines with per-term spike multipliers, cooldowns, and source diversity requirements — surfacing genuine surges while suppressing noise.                                                                                                                          |
 | **Contract-first APIs**             | Every API endpoint starts as a `.proto` definition with field validation, HTTP annotations, and examples. Code generation produces typed TypeScript clients and servers, eliminating schema drift. Breaking changes are caught automatically at CI time.                                                                                 |
-| **Run anywhere**                    | Same codebase produces three specialized variants (geopolitical, tech, finance) and deploys to Vercel (web), Railway (relay), Tauri (desktop), and PWA (installable). Desktop sidecar mirrors all cloud API handlers locally. Service worker caches map tiles for offline use while keeping intelligence data always-fresh (NetworkOnly). |
+| **Run anywhere**                    | Same codebase produces two specialized variants (finance, tesserect) and deploys to Vercel (web), Railway (relay), Tauri (desktop), and PWA (installable). Desktop sidecar mirrors all cloud API handlers locally. Service worker caches map tiles for offline use while keeping intelligence data always-fresh (NetworkOnly). |
 
 ---
 
@@ -986,7 +976,7 @@ Feeds also carry a **propaganda risk rating** and **state affiliation flag**. St
 
 ## Edge Function Architecture
 
-World Monitor uses 60+ Vercel Edge Functions as a lightweight API layer, split into two generations. Legacy endpoints in `api/*.js` each handle a single data source concern — proxying, caching, or transforming external APIs. The newer proto-first endpoints route through a single edge gateway (`api/[domain]/v1/[rpc].ts`) that dispatches to typed handler implementations generated from Protocol Buffer definitions (see [Proto-First API Contracts](#proto-first-api-contracts)). Both generations coexist, with new features built proto-first. This architecture avoids a monolithic backend while keeping API keys server-side:
+Tesserect Investments uses 60+ Vercel Edge Functions as a lightweight API layer, split into two generations. Legacy endpoints in `api/*.js` each handle a single data source concern — proxying, caching, or transforming external APIs. The newer proto-first endpoints route through a single edge gateway (`api/[domain]/v1/[rpc].ts`) that dispatches to typed handler implementations generated from Protocol Buffer definitions (see [Proto-First API Contracts](#proto-first-api-contracts)). Both generations coexist, with new features built proto-first. This architecture avoids a monolithic backend while keeping API keys server-side:
 
 - **RSS Proxy** — domain-allowlisted proxy for 100+ feeds, preventing CORS issues and hiding origin servers. Feeds from domains that block Vercel IPs are automatically routed through the Railway relay.
 - **AI Pipeline** — Groq and OpenRouter edge functions with Redis deduplication, so identical headlines across concurrent users only trigger one LLM call. The classify-event endpoint pauses its queue on 500 errors to avoid wasting API quota.
@@ -1004,7 +994,7 @@ All edge functions include circuit breaker logic and return cached stale data wh
 
 ## Multi-Platform Architecture
 
-All three variants run on three platforms that work together:
+Both variants run on three platforms that work together:
 
 ```
 ┌─────────────────────────────────────┐
@@ -1069,7 +1059,7 @@ The Tauri desktop app wraps the dashboard in a native window (macOS, Windows, Li
                       │ fetch (on local failure)
                       ▼
 ┌─────────────────────────────────────────────────┐
-│         Cloud (worldmonitor.app)                │
+│         Cloud (intel.tesserect.com)             │
 │  Transparent fallback when local handlers fail  │
 └─────────────────────────────────────────────────┘
 ```
@@ -1210,7 +1200,7 @@ The AI summarization pipeline adds content-based deduplication: headlines are ha
 
 | Layer                          | Mechanism                                                                                                                                                                                                                                          |
 | ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **CORS origin allowlist**      | Only `worldmonitor.app`, `tech.worldmonitor.app`, `finance.worldmonitor.app`, and `localhost:*` can call API endpoints. All others receive 403. Implemented in `api/_cors.js`.                                                                     |
+| **CORS origin allowlist**      | Only `intel.tesserect.com`, `tesserect.co.za`, and `localhost:*` can call API endpoints. All others receive 403. Implemented in `api/_cors.js`.                                                                     |
 | **RSS domain allowlist**       | The RSS proxy only fetches from explicitly listed domains (~90+). Requests for unlisted domains are rejected with 403.                                                                                                                             |
 | **Railway domain allowlist**   | The Railway relay has a separate, smaller domain allowlist for feeds that need the alternate origin.                                                                                                                                               |
 | **API key isolation**          | All API keys live server-side in Vercel environment variables. The browser never sees Groq, OpenRouter, ACLED, Finnhub, or other credentials.                                                                                                      |
@@ -1227,7 +1217,7 @@ The AI summarization pipeline adds content-based deduplication: headlines are ha
 
 ## Error Tracking & Production Hardening
 
-Sentry captures unhandled exceptions and promise rejections in production, with environment-aware routing (production on `worldmonitor.app`, preview on `*.vercel.app`, disabled on localhost and Tauri desktop).
+Sentry captures unhandled exceptions and promise rejections in production, with environment-aware routing (production on `intel.tesserect.com`, preview on `*.vercel.app`, disabled on localhost and Tauri desktop).
 
 The configuration includes 30+ `ignoreErrors` patterns that suppress noise from:
 
@@ -1244,7 +1234,7 @@ A custom `beforeSend` hook provides second-stage filtering: it suppresses single
 
 **Storage quota management** — when a device's localStorage or IndexedDB quota is exhausted (common on mobile Safari with its 5MB limit), a global `_storageQuotaExceeded` flag disables all further write attempts across both the persistent cache (IndexedDB + localStorage fallback) and the utility `saveToStorage()` function. The flag is set on the first `DOMException` with `name === 'QuotaExceededError'` or `code === 22`, and prevents cascading errors from repeated failed writes. Read operations continue normally — cached data remains accessible, only new writes are suppressed.
 
-Transactions are sampled at 10% to balance observability with cost. Release tracking (`worldmonitor@{version}`) enables regression detection across deployments.
+Transactions are sampled at 10% to balance observability with cost. Release tracking (`tesserect@{version}`) enables regression detection across deployments.
 
 ---
 
@@ -1252,7 +1242,7 @@ Transactions are sampled at 10% to balance observability with cost. Release trac
 
 ```bash
 # Clone and run
-git clone https://github.com/koala73/worldmonitor.git
+git clone https://github.com/koala73/worldmonitor.git  # or your Tesserect fork
 cd worldmonitor
 npm install
 vercel dev       # Runs frontend + all 60+ API edge functions
@@ -1290,7 +1280,7 @@ See [`.env.example`](./.env.example) for the complete list with registration lin
 
 ## Self-Hosting
 
-World Monitor relies on **60+ Vercel Edge Functions** in the `api/` directory for RSS proxying, data caching, and API key isolation. Running `npm run dev` alone starts only the Vite frontend — the edge functions won't execute, and most panels (news feeds, markets, AI summaries) will be empty.
+The Tesserect dashboard relies on **60+ Vercel Edge Functions** in the `api/` directory for RSS proxying, data caching, and API key isolation. Running `npm run dev` alone starts only the Vite frontend — the edge functions won't execute, and most panels (news feeds, markets, AI summaries) will be empty.
 
 ### Option 1: Deploy to Vercel (Recommended)
 
@@ -1377,32 +1367,27 @@ Contributions welcome! See [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed gui
 
 ```bash
 # Development
-npm run dev          # Full variant (worldmonitor.app)
-npm run dev:tech     # Tech variant (tech.worldmonitor.app)
-npm run dev:finance  # Finance variant (finance.worldmonitor.app)
+npm run dev          # Finance variant (intel.tesserect.com)
+npm run dev:finance  # Finance variant
+npm run dev:tesserect # Tesserect variant
 
 # Production builds
-npm run build:full      # Build full variant
-npm run build:tech      # Build tech variant
 npm run build:finance   # Build finance variant
+npm run build:tesserect # Build Tesserect variant
 
 # Quality
 npm run typecheck    # TypeScript type checking
 
 # Desktop packaging
-npm run desktop:package:macos:full      # .app + .dmg (World Monitor)
-npm run desktop:package:macos:tech      # .app + .dmg (Tech Monitor)
-npm run desktop:package:macos:finance   # .app + .dmg (Finance Monitor)
-npm run desktop:package:windows:full    # .exe + .msi (World Monitor)
-npm run desktop:package:windows:tech    # .exe + .msi (Tech Monitor)
-npm run desktop:package:windows:finance # .exe + .msi (Finance Monitor)
+npm run desktop:package:macos:finance     # .app + .dmg (Finance Monitor)
+npm run desktop:package:windows:finance   # .exe + .msi (Finance Monitor)
 
-# Generic packaging runner
-npm run desktop:package -- --os macos --variant full
+# Generic packaging runner (supports --variant finance or tesserect)
+npm run desktop:package -- --os macos --variant finance
 
-# Signed packaging (same targets, requires signing env vars)
-npm run desktop:package:macos:full:sign
-npm run desktop:package:windows:full:sign
+# Signed packaging (requires signing env vars)
+npm run desktop:package:macos:finance:sign
+npm run desktop:package:windows:finance:sign
 ```
 
 Desktop release details, signing hooks, variant outputs, and clean-machine validation checklist:
@@ -1414,7 +1399,7 @@ Desktop release details, signing hooks, variant outputs, and clean-machine valid
 ## Roadmap
 
 - [x] 60+ API edge functions for programmatic access
-- [x] Tri-variant system (geopolitical + tech + finance)
+- [x] Dual-variant system (finance + tesserect)
 - [x] Market intelligence (macro signals, ETF flows, stablecoin peg monitoring)
 - [x] Railway relay for WebSocket and blocked-domain proxying
 - [x] CORS origin allowlist and security hardening
@@ -1490,10 +1475,10 @@ See [full roadmap](./docs/DOCUMENTATION.md#roadmap).
 
 ## Support the Project
 
-If you find World Monitor useful:
+If you find the Tesserect dashboard useful:
 
 - **Star this repo** to help others discover it
-- **Share** with colleagues interested in OSINT
+- **Share** with colleagues interested in trade intelligence
 - **Contribute** code, data sources, or documentation
 - **Report issues** to help improve the platform
 
@@ -1513,7 +1498,7 @@ GNU Affero General Public License v3.0 (AGPL-3.0) — see [LICENSE](LICENSE) for
 
 ## Contributors
 
-Thanks to everyone who has contributed to World Monitor:
+Thanks to everyone who has contributed to Tesserect Investments:
 
 [@SebastienMelki](https://github.com/SebastienMelki),
 [@Lib-LOCALE](https://github.com/Lib-LOCALE),
@@ -1545,9 +1530,8 @@ If you discover a vulnerability, please see our [Security Policy](./SECURITY.md)
 ---
 
 <p align="center">
-  <a href="https://worldmonitor.app">worldmonitor.app</a> &nbsp;·&nbsp;
-  <a href="https://tech.worldmonitor.app">tech.worldmonitor.app</a> &nbsp;·&nbsp;
-  <a href="https://finance.worldmonitor.app">finance.worldmonitor.app</a>
+  <a href="https://intel.tesserect.com">intel.tesserect.com</a> &nbsp;·&nbsp;
+  <a href="https://www.tesserect.co.za">Tesserect Investments</a>
 </p>
 
 ## Star History

@@ -218,6 +218,58 @@ export const TRADE_ROUTES: TradeRoute[] = [
     volumeDesc: '8M+ TEU/year',
     waypoints: [],
   },
+
+  // South Africa trade corridors (Tesserect — map “Trade Corridors” view)
+  {
+    id: 'sa-uae',
+    name: 'South Africa → UAE',
+    from: 'durban',
+    to: 'jebel_ali',
+    category: 'container',
+    status: 'active',
+    volumeDesc: 'Citrus, wine, minerals',
+    waypoints: ['bab_el_mandeb'],
+  },
+  {
+    id: 'sa-china',
+    name: 'South Africa → China',
+    from: 'durban',
+    to: 'shanghai',
+    category: 'container',
+    status: 'active',
+    volumeDesc: 'Commodities, agricultural exports',
+    waypoints: ['malacca_strait'],
+  },
+  {
+    id: 'sa-turkey',
+    name: 'South Africa → Turkey',
+    from: 'durban',
+    to: 'ambarli',
+    category: 'container',
+    status: 'active',
+    volumeDesc: 'Trade corridor',
+    waypoints: ['bab_el_mandeb', 'suez', 'bosphorus'],
+  },
+  {
+    id: 'cape-town-uae',
+    name: 'Cape Town → UAE',
+    from: 'cape_town',
+    to: 'jebel_ali',
+    category: 'container',
+    status: 'active',
+    volumeDesc: 'Citrus, wine exports',
+    waypoints: ['bab_el_mandeb'],
+  },
+  {
+    id: 'cape-town-china',
+    name: 'Cape Town → China',
+    from: 'cape_town',
+    to: 'shenzhen',
+    category: 'container',
+    status: 'active',
+    volumeDesc: 'Agricultural exports',
+    waypoints: ['malacca_strait'],
+  },
 ];
 
 export function resolveTradeRouteSegments(): TradeRouteSegment[] {

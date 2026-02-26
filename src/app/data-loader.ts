@@ -167,7 +167,7 @@ export class DataLoaderManager implements AppModule {
       tasks.push({ name: 'bis', task: runGuarded('bis', () => this.loadBisData()) });
 
       // Trade policy data (FULL and FINANCE only)
-      if (SITE_VARIANT === 'full' || SITE_VARIANT === 'finance') {
+      if (SITE_VARIANT === 'full' || SITE_VARIANT === 'finance' || SITE_VARIANT === 'tesserect') {
         tasks.push({ name: 'tradePolicy', task: runGuarded('tradePolicy', () => this.loadTradePolicy()) });
       }
     }

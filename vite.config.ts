@@ -49,79 +49,29 @@ const VARIANT_META: Record<string, {
   categories: string[];
   features: string[];
 }> = {
-  full: {
-    title: 'World Monitor - Real-Time Global Intelligence Dashboard',
-    description: 'Real-time global intelligence dashboard with live news, markets, military tracking, infrastructure monitoring, and geopolitical data. OSINT in one view.',
-    keywords: 'global intelligence, geopolitical dashboard, world news, market data, military bases, nuclear facilities, undersea cables, conflict zones, real-time monitoring, situation awareness, OSINT, flight tracking, AIS ships, earthquake monitor, protest tracker, power outages, oil prices, government spending, polymarket predictions',
-    url: 'https://worldmonitor.app/',
-    siteName: 'World Monitor',
-    shortName: 'WorldMonitor',
-    subject: 'Real-Time Global Intelligence and Situation Awareness',
-    classification: 'Intelligence Dashboard, OSINT Tool, News Aggregator',
-    categories: ['news', 'productivity'],
+  tesserect: {
+    title: 'Tesserect - Commodity Trade Facilitation Dashboard',
+    description: 'Commodity trade facilitation dashboard for citrus, wine, precious metals, and agricultural exports. South Africa trade corridors.',
+    keywords: 'commodity trade, citrus exports, wine exports, precious metals, agricultural exports, South Africa, trade facilitation, LC, Incoterms',
+    url: 'https://intel.tesserect.com/',
+    siteName: 'Tesserect',
+    shortName: 'Tesserect',
+    subject: 'Commodity Trade Facilitation',
+    classification: 'Trade Dashboard, Commodity Intelligence',
+    categories: ['business', 'news'],
     features: [
-      'Real-time news aggregation',
-      'Stock market tracking',
-      'Military flight monitoring',
-      'Ship AIS tracking',
-      'Earthquake alerts',
-      'Protest tracking',
-      'Power outage monitoring',
-      'Oil price analytics',
-      'Government spending data',
-      'Prediction markets',
-      'Infrastructure monitoring',
-      'Geopolitical intelligence',
-    ],
-  },
-  tech: {
-    title: 'Tech Monitor - Real-Time AI & Tech Industry Dashboard',
-    description: 'Real-time AI and tech industry dashboard tracking tech giants, AI labs, startup ecosystems, funding rounds, and tech events worldwide.',
-    keywords: 'tech dashboard, AI industry, startup ecosystem, tech companies, AI labs, venture capital, tech events, tech conferences, cloud infrastructure, datacenters, tech layoffs, funding rounds, unicorns, FAANG, tech HQ, accelerators, Y Combinator, tech news',
-    url: 'https://tech.worldmonitor.app/',
-    siteName: 'Tech Monitor',
-    shortName: 'TechMonitor',
-    subject: 'AI, Tech Industry, and Startup Ecosystem Intelligence',
-    classification: 'Tech Dashboard, AI Tracker, Startup Intelligence',
-    categories: ['news', 'business'],
-    features: [
-      'Tech news aggregation',
-      'AI lab tracking',
-      'Startup ecosystem mapping',
-      'Tech HQ locations',
-      'Conference & event calendar',
-      'Cloud infrastructure monitoring',
-      'Datacenter mapping',
-      'Tech layoff tracking',
-      'Funding round analytics',
-      'Tech stock tracking',
-      'Service status monitoring',
-    ],
-  },
-  happy: {
-    title: 'Happy Monitor - Good News & Global Progress',
-    description: 'Curated positive news, progress data, and uplifting stories from around the world.',
-    keywords: 'good news, positive news, global progress, happy news, uplifting stories, human achievement, science breakthroughs, conservation wins',
-    url: 'https://happy.worldmonitor.app/',
-    siteName: 'Happy Monitor',
-    shortName: 'HappyMonitor',
-    subject: 'Good News, Global Progress, and Human Achievement',
-    classification: 'Positive News Dashboard, Progress Tracker',
-    categories: ['news', 'lifestyle'],
-    features: [
-      'Curated positive news',
-      'Global progress tracking',
-      'Live humanity counters',
-      'Science breakthrough feed',
-      'Conservation tracker',
-      'Renewable energy dashboard',
+      'Commodity news',
+      'Trade corridors',
+      'Market data',
+      'Economic indicators',
+      'Trade policy',
     ],
   },
   finance: {
     title: 'Finance Monitor - Real-Time Markets & Trading Dashboard',
     description: 'Real-time finance and trading dashboard tracking global markets, stock exchanges, central banks, commodities, forex, crypto, and economic indicators worldwide.',
     keywords: 'finance dashboard, trading dashboard, stock market, forex, commodities, central banks, crypto, economic indicators, market news, financial centers, stock exchanges, bonds, derivatives, fintech, hedge funds, IPO tracker, market analysis',
-    url: 'https://finance.worldmonitor.app/',
+    url: 'https://intel.tesserect.com/',
     siteName: 'Finance Monitor',
     shortName: 'FinanceMonitor',
     subject: 'Global Markets, Trading, and Financial Intelligence',
@@ -143,8 +93,8 @@ const VARIANT_META: Record<string, {
   },
 };
 
-const activeVariant = process.env.VITE_VARIANT || 'full';
-const activeMeta = VARIANT_META[activeVariant] || VARIANT_META.full;
+const activeVariant = process.env.VITE_VARIANT || 'finance';
+const activeMeta = VARIANT_META[activeVariant] || VARIANT_META.finance;
 
 function htmlVariantPlugin(): Plugin {
   return {
@@ -172,31 +122,28 @@ function htmlVariantPlugin(): Plugin {
         .replace(/"description": "Real-time global intelligence dashboard with live news, markets, military tracking, infrastructure monitoring, and geopolitical data."/, `"description": "${activeMeta.description}"`)
         .replace(/"featureList": \[[\s\S]*?\]/, `"featureList": ${JSON.stringify(activeMeta.features, null, 8).replace(/\n/g, '\n      ')}`);
 
-      // Theme-color meta — warm cream for happy variant
-      if (activeVariant === 'happy') {
+      // Theme-color meta — variant-specific
+      if (activeVariant === 'tesserect') {
         result = result.replace(
           /<meta name="theme-color" content=".*?" \/>/,
-          '<meta name="theme-color" content="#FAFAF5" />'
+          '<meta name="theme-color" content="#32705b" />'
         );
       }
 
       // Inject build-time variant into the inline script so data-variant is set before CSS loads.
       // Force the variant (don't let stale localStorage override the build-time setting).
-      if (activeVariant !== 'full') {
-        result = result.replace(
-          /if\(v\)document\.documentElement\.dataset\.variant=v;/,
-          `v='${activeVariant}';document.documentElement.dataset.variant=v;`
-        );
-      }
+      result = result.replace(
+        /if\(v\)document\.documentElement\.dataset\.variant=v;/,
+        `v='${activeVariant}';document.documentElement.dataset.variant=v;`
+      );
 
       // Favicon variant paths — replace /favico/ paths with variant-specific subdirectory
-      if (activeVariant !== 'full') {
-        result = result
+      const appleIcon = activeVariant === 'tesserect' ? 'apple-icon-180x180' : 'apple-touch-icon';
+      result = result
           .replace(/\/favico\/favicon/g, `/favico/${activeVariant}/favicon`)
-          .replace(/\/favico\/apple-touch-icon/g, `/favico/${activeVariant}/apple-touch-icon`)
+          .replace(/\/favico\/apple-touch-icon/g, `/favico/${activeVariant}/${appleIcon}`)
           .replace(/\/favico\/android-chrome/g, `/favico/${activeVariant}/android-chrome`)
           .replace(/\/favico\/og-image/g, `/favico/${activeVariant}/og-image`);
-      }
 
       return result;
     },
@@ -665,11 +612,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       injectRegister: false,
 
-      includeAssets: [
-        'favico/favicon.ico',
-        'favico/apple-touch-icon.png',
-        'favico/favicon-32x32.png',
-      ],
+      includeAssets: activeVariant === 'tesserect'
+        ? ['favico/tesserect/favicon.ico', 'favico/tesserect/apple-icon-180x180.png', 'favico/tesserect/favicon-32x32.png']
+        : ['favico/favicon.ico', 'favico/apple-touch-icon.png', 'favico/favicon-32x32.png'],
 
       manifest: {
         name: `${activeMeta.siteName} - ${activeMeta.subject}`,
@@ -679,14 +624,20 @@ export default defineConfig({
         scope: '/',
         display: 'standalone',
         orientation: 'any',
-        theme_color: '#0a0f0a',
-        background_color: '#0a0f0a',
+        theme_color: activeVariant === 'tesserect' ? '#32705b' : '#0a0f0a',
+        background_color: activeVariant === 'tesserect' ? '#111414' : '#0a0f0a',
         categories: activeMeta.categories,
-        icons: [
-          { src: '/favico/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
-          { src: '/favico/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
-          { src: '/favico/android-chrome-512x512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
-        ],
+        icons: activeVariant === 'tesserect'
+          ? [
+              { src: '/favico/tesserect/android-icon-192x192.png', sizes: '192x192', type: 'image/png' },
+              { src: '/favico/tesserect/android-icon-192x192.png', sizes: '512x512', type: 'image/png' },
+              { src: '/favico/tesserect/android-icon-192x192.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+            ]
+          : [
+              { src: '/favico/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
+              { src: '/favico/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
+              { src: '/favico/android-chrome-512x512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+            ],
       },
 
       workbox: {

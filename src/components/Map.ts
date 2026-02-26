@@ -328,34 +328,13 @@ export class MapComponent {
     toggles.className = 'layer-toggles';
     toggles.id = 'layerToggles';
 
-    // Variant-aware layer buttons
-    const fullLayers: (keyof MapLayers)[] = [
-      'conflicts', 'hotspots', 'sanctions', 'protests',  // geopolitical
-      'bases', 'nuclear', 'irradiators',                 // military/strategic
-      'military',                                         // military tracking (flights + vessels)
-      'cables', 'pipelines', 'outages', 'datacenters',   // infrastructure
-      // cyberThreats is intentionally hidden on SVG/mobile fallback (DeckGL desktop only)
-      'ais', 'flights',                                   // transport
-      'natural', 'weather',                               // natural
-      'economic',                                         // economic
-      'waterways',                                        // labels
-    ];
-    const techLayers: (keyof MapLayers)[] = [
-      'cables', 'datacenters', 'outages',                // tech infrastructure
-      'startupHubs', 'cloudRegions', 'accelerators', 'techHQs', 'techEvents', // tech ecosystem
-      'natural', 'weather',                               // natural events
-      'economic',                                         // economic/geographic
-    ];
     const financeLayers: (keyof MapLayers)[] = [
       'stockExchanges', 'financialCenters', 'centralBanks', 'commodityHubs', // finance ecosystem
       'cables', 'pipelines', 'outages',                   // infrastructure
       'sanctions', 'economic', 'waterways',               // geopolitical/economic
       'natural', 'weather',                               // natural events
     ];
-    const happyLayers: (keyof MapLayers)[] = [
-      'positiveEvents', 'kindness', 'happiness', 'speciesRecovery', 'renewableInstallations',
-    ];
-    const layers = SITE_VARIANT === 'tech' ? techLayers : SITE_VARIANT === 'finance' ? financeLayers : SITE_VARIANT === 'happy' ? happyLayers : fullLayers;
+    const layers = financeLayers;
     const layerLabelKeys: Partial<Record<keyof MapLayers, string>> = {
       hotspots: 'components.deckgl.layers.intelHotspots',
       conflicts: 'components.deckgl.layers.conflictZones',
@@ -421,7 +400,6 @@ export class MapComponent {
     popup.className = 'layer-help-popup';
 
     const label = (layerKey: string): string => t(`components.deckgl.layers.${layerKey}`).toUpperCase();
-    const staticLabel = (labelKey: string): string => t(`components.deckgl.layerHelp.labels.${labelKey}`).toUpperCase();
     const helpItem = (layerLabel: string, descriptionKey: string): string =>
       `<div class="layer-help-item"><span>${layerLabel}</span> ${t(`components.deckgl.layerHelp.descriptions.${descriptionKey}`)}</div>`;
     const helpSection = (titleKey: string, items: string[], noteKey?: string): string => `
@@ -435,30 +413,6 @@ export class MapComponent {
       <div class="layer-help-header">
         <span>${t('components.deckgl.layerHelp.title')}</span>
         <button class="layer-help-close">×</button>
-      </div>
-    `;
-
-    const techHelpContent = `
-      ${helpHeader}
-      <div class="layer-help-content">
-        ${helpSection('techEcosystem', [
-          helpItem(label('startupHubs'), 'techStartupHubs'),
-          helpItem(label('cloudRegions'), 'techCloudRegions'),
-          helpItem(label('techHQs'), 'techHQs'),
-          helpItem(label('accelerators'), 'techAccelerators'),
-          helpItem(label('techEvents'), 'techEvents'),
-        ])}
-        ${helpSection('infrastructure', [
-          helpItem(label('underseaCables'), 'infraCables'),
-          helpItem(label('aiDataCenters'), 'infraDatacenters'),
-          helpItem(label('internetOutages'), 'infraOutages'),
-          helpItem(label('cyberThreats'), 'techCyberThreats'),
-        ])}
-        ${helpSection('naturalEconomic', [
-          helpItem(label('naturalEvents'), 'naturalEventsTech'),
-          helpItem(label('fires'), 'techFires'),
-          helpItem(staticLabel('countries'), 'countriesOverlay'),
-        ])}
       </div>
     `;
 
@@ -487,59 +441,7 @@ export class MapComponent {
       </div>
     `;
 
-    const fullHelpContent = `
-      ${helpHeader}
-      <div class="layer-help-content">
-        ${helpSection('timeFilter', [
-          helpItem(staticLabel('timeRecent'), 'timeRecent'),
-          helpItem(staticLabel('timeExtended'), 'timeExtended'),
-        ], 'timeAffects')}
-        ${helpSection('geopolitical', [
-          helpItem(label('conflictZones'), 'geoConflicts'),
-          helpItem(label('intelHotspots'), 'geoHotspots'),
-          helpItem(staticLabel('sanctions'), 'geoSanctions'),
-          helpItem(label('protests'), 'geoProtests'),
-          helpItem(label('ucdpEvents'), 'geoUcdpEvents'),
-          helpItem(label('displacementFlows'), 'geoDisplacement'),
-        ])}
-        ${helpSection('militaryStrategic', [
-          helpItem(label('militaryBases'), 'militaryBases'),
-          helpItem(label('nuclearSites'), 'militaryNuclear'),
-          helpItem(label('gammaIrradiators'), 'militaryIrradiators'),
-          helpItem(label('militaryActivity'), 'militaryActivity'),
-          helpItem(label('spaceports'), 'militarySpaceports'),
-        ])}
-        ${helpSection('infrastructure', [
-          helpItem(label('underseaCables'), 'infraCablesFull'),
-          helpItem(label('pipelines'), 'infraPipelinesFull'),
-          helpItem(label('internetOutages'), 'infraOutages'),
-          helpItem(label('aiDataCenters'), 'infraDatacentersFull'),
-          helpItem(label('cyberThreats'), 'infraCyberThreats'),
-        ])}
-        ${helpSection('transport', [
-          helpItem(label('shipTraffic'), 'transportShipping'),
-          helpItem(label('flightDelays'), 'transportDelays'),
-        ])}
-        ${helpSection('naturalEconomic', [
-          helpItem(label('naturalEvents'), 'naturalEventsFull'),
-          helpItem(label('fires'), 'firesFull'),
-          helpItem(label('weatherAlerts'), 'weatherAlerts'),
-          helpItem(label('climateAnomalies'), 'climateAnomalies'),
-          helpItem(label('economicCenters'), 'economicCenters'),
-          helpItem(label('criticalMinerals'), 'mineralsFull'),
-        ])}
-        ${helpSection('labels', [
-          helpItem(staticLabel('countries'), 'countriesOverlay'),
-          helpItem(label('strategicWaterways'), 'waterwaysLabels'),
-        ])}
-      </div>
-    `;
-
-    popup.innerHTML = SITE_VARIANT === 'tech'
-      ? techHelpContent
-      : SITE_VARIANT === 'finance'
-      ? financeHelpContent
-      : fullHelpContent;
+    popup.innerHTML = financeHelpContent;
 
     popup.querySelector('.layer-help-close')?.addEventListener('click', () => popup.remove());
 
@@ -576,31 +478,13 @@ export class MapComponent {
     const legend = document.createElement('div');
     legend.className = 'map-legend';
 
-    if (SITE_VARIANT === 'tech') {
-      // Tech variant legend
-      legend.innerHTML = `
-        <div class="map-legend-item"><span class="legend-dot" style="background:#8b5cf6"></span>${escapeHtml(t('components.deckgl.layers.techHQs').toUpperCase())}</div>
-        <div class="map-legend-item"><span class="legend-dot" style="background:#06b6d4"></span>${escapeHtml(t('components.deckgl.layers.startupHubs').toUpperCase())}</div>
-        <div class="map-legend-item"><span class="legend-dot" style="background:#f59e0b"></span>${escapeHtml(t('components.deckgl.layers.cloudRegions').toUpperCase())}</div>
-        <div class="map-legend-item"><span class="map-legend-icon" style="color:#a855f7">📅</span>${escapeHtml(t('components.deckgl.layers.techEvents').toUpperCase())}</div>
-        <div class="map-legend-item"><span class="map-legend-icon" style="color:#4ecdc4">💾</span>${escapeHtml(t('components.deckgl.layers.aiDataCenters').toUpperCase())}</div>
-      `;
-    } else if (SITE_VARIANT === 'happy') {
-      // Happy variant legend — natural events only
-      legend.innerHTML = `
-        <div class="map-legend-item"><span class="map-legend-icon earthquake">●</span>${escapeHtml(t('components.deckgl.layers.naturalEvents').toUpperCase())}</div>
-      `;
-    } else {
-      // Geopolitical variant legend
-      legend.innerHTML = `
-        <div class="map-legend-item"><span class="legend-dot high"></span>${escapeHtml((t('popups.hotspot.levels.high') ?? 'HIGH').toUpperCase())}</div>
-        <div class="map-legend-item"><span class="legend-dot elevated"></span>${escapeHtml((t('popups.hotspot.levels.elevated') ?? 'ELEVATED').toUpperCase())}</div>
-        <div class="map-legend-item"><span class="legend-dot low"></span>${escapeHtml((t('popups.monitoring') ?? 'MONITORING').toUpperCase())}</div>
-        <div class="map-legend-item"><span class="map-legend-icon conflict">⚔</span>${escapeHtml(t('modals.search.types.conflict').toUpperCase())}</div>
-        <div class="map-legend-item"><span class="map-legend-icon earthquake">●</span>${escapeHtml(t('modals.search.types.earthquake').toUpperCase())}</div>
-        <div class="map-legend-item"><span class="map-legend-icon apt">⚠</span>APT</div>
-      `;
-    }
+    // Finance variant legend
+    legend.innerHTML = `
+      <div class="map-legend-item"><span class="map-legend-icon">&#127963;</span>${escapeHtml(t('components.deckgl.layers.stockExchanges').toUpperCase())}</div>
+      <div class="map-legend-item"><span class="map-legend-icon">&#128176;</span>${escapeHtml(t('components.deckgl.layers.financialCenters').toUpperCase())}</div>
+      <div class="map-legend-item"><span class="map-legend-icon">&#127974;</span>${escapeHtml(t('components.deckgl.layers.centralBanks').toUpperCase())}</div>
+      <div class="map-legend-item"><span class="map-legend-icon earthquake">●</span>${escapeHtml(t('modals.search.types.earthquake').toUpperCase())}</div>
+    `;
     return legend;
   }
 
@@ -2132,7 +2016,7 @@ export class MapComponent {
     }
 
     // Tech Hub Activity Markers (shows activity heatmap for tech hubs with news activity)
-    if (SITE_VARIANT === 'tech' && this.techActivities.length > 0) {
+    if (false && this.techActivities.length > 0) {
       this.techActivities.forEach((activity) => {
         const pos = projection([activity.lon, activity.lat]);
         if (!pos) return;
@@ -2174,7 +2058,7 @@ export class MapComponent {
     }
 
     // Geo Hub Activity Markers (shows activity heatmap for geopolitical hubs - full variant)
-    if (SITE_VARIANT === 'full' && this.geoActivities.length > 0) {
+    if (false && this.geoActivities.length > 0) {
       this.geoActivities.forEach((activity) => {
         const pos = projection([activity.lon, activity.lat]);
         if (!pos) return;
