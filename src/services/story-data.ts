@@ -69,11 +69,20 @@ export function collectStoryData(
     return keywords.some(kw => lower.includes(kw));
   });
 
+  const tradeTerms = ['trade', 'tariff', 'export', 'import', 'sanctions', 'supply chain', 'port', 'shipping', 'embargo', 'trade deal', 'wto', 'supply-chain'];
+  const hasTradeRelevance = (title: string) => {
+    const lower = title.toLowerCase();
+    return tradeTerms.some(term => lower.includes(term));
+  };
+
   const sortedNews = [...countryNews].sort((a, b) => {
     const priorities: Record<string, number> = { critical: 5, high: 4, medium: 3, low: 2, info: 1 };
     const pa = priorities[a.threat?.level || 'info'] || 0;
     const pb = priorities[b.threat?.level || 'info'] || 0;
-    return pb - pa;
+    if (pb !== pa) return pb - pa;
+    const aTrade = hasTradeRelevance(a.primaryTitle) ? 1 : 0;
+    const bTrade = hasTradeRelevance(b.primaryTitle) ? 1 : 0;
+    return bTrade - aTrade;
   });
 
   const theater = theaterPostures.find(t =>

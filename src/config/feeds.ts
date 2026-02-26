@@ -535,7 +535,15 @@ export const SOURCE_REGION_MAP: Record<string, { labelKey: string; feedKeys: str
 };
 
 export const INTEL_SOURCES: Feed[] = [
-  // Defense & Security (Tier 1)
+  // Trade & Commerce (Tier 1 - prefer for intel context)
+  { name: 'WTO News', url: rss('https://www.wto.org/english/news_e/rss_e.htm'), type: 'economic' },
+  { name: 'UNCTAD', url: rss('https://unctad.org/rss.xml'), type: 'economic' },
+  { name: 'Reuters Trade', url: rss('https://news.google.com/rss/search?q=site:reuters.com+(trade+OR+tariff+OR+export+OR+import+OR+supply+chain)+when:3d&hl=en-US&gl=US&ceid=US:en'), type: 'economic' },
+  { name: 'Bloomberg Trade', url: rss('https://news.google.com/rss/search?q=site:bloomberg.com+(trade+OR+tariff+OR+shipping+OR+ports)+when:3d&hl=en-US&gl=US&ceid=US:en'), type: 'economic' },
+  { name: 'Journal of Commerce', url: rss('https://news.google.com/rss/search?q=site:joc.com+when:7d&hl=en-US&gl=US&ceid=US:en'), type: 'economic' },
+  { name: 'Trade & Tariffs', url: rss('https://news.google.com/rss/search?q=(tariff+OR+"trade+war"+OR+"trade+deficit"+OR+sanctions+OR+embargo+OR+"supply+chain")+when:3d&hl=en-US&gl=US&ceid=US:en'), type: 'economic' },
+
+  // Defense & Security (Tier 2)
   { name: 'Defense One', url: rss('https://www.defenseone.com/rss/all/'), type: 'defense' },
   { name: 'Breaking Defense', url: rss('https://breakingdefense.com/feed/'), type: 'defense' },
   { name: 'The War Zone', url: rss('https://news.google.com/rss/search?q=site:thedrive.com+"war+zone"+when:7d&hl=en-US&gl=US&ceid=US:en'), type: 'defense' },
@@ -589,6 +597,7 @@ export const ALERT_KEYWORDS = [
   'airstrike', 'drone strike', 'troops deployed', 'armed conflict', 'bombing', 'casualties',
   'ceasefire', 'peace treaty', 'nato', 'coup', 'martial law',
   'assassination', 'terrorist', 'terror attack', 'cyber attack', 'hostage', 'evacuation order',
+  'tariff', 'embargo', 'port closure', 'supply chain disruption', 'trade deal', 'blockade',
 ];
 
 // Patterns that indicate non-alert content (lifestyle, entertainment, etc.)

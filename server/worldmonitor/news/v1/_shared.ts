@@ -84,6 +84,7 @@ Summarize the single most important headline in 2-3 sentences.
 Rules:
 - Each numbered headline below is a SEPARATE, UNRELATED story
 - Pick the ONE most significant headline and summarize ONLY that story
+- Prefer stories about international trade, supply chains, ports, tariffs, sanctions impact, or commercial developments when equally significant; include security risks when they affect trade (e.g. sanctions, port closures)
 - NEVER combine or merge people, places, or facts from different headlines into one sentence
 - Lead with WHAT happened and WHERE - be specific
 - NEVER start with "Breaking news", "Good evening", "Tonight", or TV-style openings
@@ -112,6 +113,7 @@ Provide analysis of the most significant development in 2-3 sentences. Be direct
 Rules:
 - Each numbered headline below is a SEPARATE, UNRELATED story
 - Pick the ONE most significant story and analyze ONLY that
+- Prefer trade, supply-chain, and commercial implications when equally significant; include security risks where they affect trade (sanctions, tariffs, port security)
 - NEVER combine or merge people, places, or facts from different headlines
 - Lead with the insight - what's significant and why
 - NEVER start with "Breaking news", "Tonight", "The key/dominant narrative is"
@@ -121,7 +123,7 @@ Rules:
     }
     userPrompt = isTechVariant
       ? `Each headline is a separate story. What's the key tech trend?\n${headlineText}${intelSection}`
-      : `Each headline is a separate story. What's the key pattern or risk?\n${headlineText}${intelSection}`;
+      : `Each headline is a separate story. What's the key pattern for trade or risk?\n${headlineText}${intelSection}`;
   } else if (opts.mode === 'translate') {
     const targetLang = opts.variant;
     systemPrompt = `You are a professional news translator. Translate the following news headlines/summaries into ${targetLang}.
@@ -134,7 +136,7 @@ Rules:
   } else {
     systemPrompt = isTechVariant
       ? `${dateContext}\n\nPick the most important tech headline and summarize it in 2 sentences. Each headline is a separate story - NEVER merge facts from different headlines. Focus on startups, AI, funding, products. Ignore politics unless directly about tech regulation.${langInstruction}`
-      : `${dateContext}\n\nPick the most important headline and summarize it in 2 sentences. Each headline is a separate, unrelated story - NEVER merge people or facts from different headlines. Lead with substance. NEVER start with "Breaking news" or "Tonight".${langInstruction}`;
+      : `${dateContext}\n\nPick the most important headline and summarize it in 2 sentences. Prefer international trade, supply chains, ports, or commercial developments when equally important; include security/trade-policy risks (sanctions, tariffs) where they affect trade. Each headline is a separate, unrelated story - NEVER merge people or facts from different headlines. Lead with substance. NEVER start with "Breaking news" or "Tonight".${langInstruction}`;
     userPrompt = `Each headline is a separate story. Key takeaway from the most important one:\n${headlineText}${intelSection}`;
   }
 

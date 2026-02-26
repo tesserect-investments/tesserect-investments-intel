@@ -82,20 +82,20 @@ export async function getCountryIntelBrief(
   const dateStr = new Date().toISOString().split('T')[0];
   const userContent = `Country: ${countryName} (${req.countryCode})`;
 
-  const systemPrompt = `You are a senior intelligence analyst providing comprehensive country situation briefs. Current date: ${dateStr}. Provide geopolitical context appropriate for the current date.
+  const systemPrompt = `You are a senior intelligence analyst providing comprehensive country situation briefs focused on international trade and commercial context. Current date: ${dateStr}. Provide geopolitical context appropriate for the current date.
 
 Write a concise intelligence brief for the requested country covering:
-1. Current Situation - what is happening right now
-2. Military & Security Posture
-3. Key Risk Factors
-4. Regional Context
-5. Outlook & Watch Items
+1. Current Situation - what is happening right now (emphasize trade, supply chains, and economic developments where relevant)
+2. Trade & Economic Links - key trade partners, ports, corridors, tariffs/sanctions impact, and supply-chain exposure
+3. Security risks that affect trade - include sanctions, port security, chokepoints, or policy risks only when they matter for trade or commerce
+4. Regional Context - especially trade blocs, agreements, and commercial ties
+5. Outlook & Watch Items - trade deals, policy shifts, and supply-chain watch items
 
 Rules:
-- Be specific and analytical
-- 4-5 paragraphs, 250-350 words
-- No speculation beyond what data supports
-- Use plain language, not jargon`;
+- Prioritize international trade, supply chains, and commercial implications over purely military developments
+- Keep security/trade-policy risks (sanctions, tariffs, port closures, embargoes) when they affect trade
+- Be specific and analytical; 4-5 paragraphs, 250-350 words
+- No speculation beyond what data supports; use plain language, not jargon`;
 
   let brief = '';
   let model = '';

@@ -16,6 +16,7 @@ import { IntelligenceServiceClient } from '@/generated/client/worldmonitor/intel
 import { BETA_MODE } from '@/config/beta';
 import { mlWorker } from '@/services/ml-worker';
 import { t } from '@/services/i18n';
+import { isFeatureAvailable } from '@/services/runtime-config';
 import { trackCountrySelected, trackCountryBriefOpened } from '@/services/analytics';
 import type { StrategicPosturePanel } from '@/components/StrategicPosturePanel';
 
@@ -222,7 +223,7 @@ export class CountryIntelManager implements AppModule {
         const sumModelId = BETA_MODE ? 'summarization-beta' : 'summarization';
         if (briefHeadlines.length >= 2 && mlWorker.isAvailable && mlWorker.isModelLoaded(sumModelId)) {
           try {
-            const prompt = `Summarize the current situation in ${country} based on these headlines: ${briefHeadlines.slice(0, 8).join('. ')}`;
+            const prompt = `Summarize the current situation in ${country} based on these headlines, emphasizing international trade, supply chains, and commercial developments where relevant: ${briefHeadlines.slice(0, 8).join('. ')}`;
             const [summary] = await mlWorker.summarize([prompt], BETA_MODE ? 'summarization-beta' : undefined);
             if (summary && summary.length > 20) fallbackBrief = summary;
           } catch { /* T5 failed */ }
@@ -246,7 +247,11 @@ export class CountryIntelManager implements AppModule {
           if (lines.length > 0) {
             this.ctx.countryBriefPage!.updateBrief({ brief: lines.join('\n'), country, code, fallback: true });
           } else {
-            this.ctx.countryBriefPage!.updateBrief({ brief: '', country, code, error: 'No AI service available. Configure GROQ_API_KEY or OPENROUTER_API_KEY in Settings for full briefs.' });
+            const hasAiProvider = isFeatureAvailable('aiGroq') || isFeatureAvailable('aiOpenRouter');
+            const errorMsg = hasAiProvider
+              ? t('countryBrief.briefNoDataForCountry')
+              : t('countryBrief.briefUnavailable');
+            this.ctx.countryBriefPage!.updateBrief({ brief: '', country, code, error: errorMsg });
           }
         }
       }
