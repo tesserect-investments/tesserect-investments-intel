@@ -16,8 +16,8 @@ const FINANCE_PANELS: Record<string, PanelConfig> = {
   bonds: { name: 'Fixed Income', enabled: true, priority: 1 },
   commodities: { name: 'Commodities & Futures', enabled: true, priority: 1 },
   'commodities-news': { name: 'Commodities News', enabled: true, priority: 2 },
-  crypto: { name: 'Crypto & Digital Assets', enabled: true, priority: 1 },
-  'crypto-news': { name: 'Crypto News', enabled: true, priority: 2 },
+  crypto: { name: 'Crypto & Digital Assets', enabled: false, priority: 1 },
+  'crypto-news': { name: 'Crypto News', enabled: false, priority: 2 },
   centralbanks: { name: 'Central Bank Watch', enabled: true, priority: 1 },
   economic: { name: 'Economic Data', enabled: true, priority: 1 },
   'trade-policy': { name: 'Trade Policy', enabled: true, priority: 1 },
@@ -30,12 +30,12 @@ const FINANCE_PANELS: Record<string, PanelConfig> = {
   regulation: { name: 'Financial Regulation', enabled: true, priority: 2 },
   institutional: { name: 'Hedge Funds & PE', enabled: true, priority: 2 },
   analysis: { name: 'Market Analysis', enabled: true, priority: 2 },
-  'etf-flows': { name: 'BTC ETF Tracker', enabled: true, priority: 2 },
-  stablecoins: { name: 'Stablecoins', enabled: true, priority: 2 },
-  'gcc-investments': { name: 'GCC Investments', enabled: true, priority: 2 },
+  'etf-flows': { name: 'BTC ETF Tracker', enabled: false, priority: 2 },
+  stablecoins: { name: 'Stablecoins', enabled: false, priority: 2 },
+  'gcc-investments': { name: 'GCC Investments', enabled: true, priority: 1 },
   gccNews: { name: 'GCC Business News', enabled: true, priority: 2 },
   polymarket: { name: 'Predictions', enabled: true, priority: 2 },
-  monitors: { name: 'My Monitors', enabled: true, priority: 2 },
+  monitors: { name: 'My Monitors', enabled: false, priority: 2 },
 };
 
 const FINANCE_MAP_LAYERS: MapLayers = {
