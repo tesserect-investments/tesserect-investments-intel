@@ -10,14 +10,6 @@ interface ChatState {
   sending: boolean;
 }
 
-const INITIAL_SYSTEM_CONTEXT =
-  'You are Tesserect AI, an assistant embedded in the Tesserect trade intelligence dashboard. ' +
-  'Tesserect focuses on commodity trade facilitation, trade corridors, ports, Gulf investments, ' +
-  'and economic intelligence with a strong emphasis on South Africa, Africa, MENA, and Asia. ' +
-  'Align answers with Tesserect’s goals: helping exporters, investors, and policy teams understand ' +
-  'trade flows, risks, and opportunities. Prefer discussion of international trade, supply chains, ' +
-  'ports, trade policy, and investment corridors over purely military topics.';
-
 export function mountAiChatWidget(): void {
   if (document.querySelector('.tesserect-ai-widget')) return;
   if (localStorage.getItem(DISMISSED_KEY) === 'true') return;

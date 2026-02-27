@@ -52,7 +52,7 @@ export default async function handler(request: Request): Promise<Response> {
       });
     }
 
-    const { reply, provider, model } = await routeToProvider(userMessages);
+    const { reply, provider, model } = await routeToProvider(userMessages, body.confidential === true);
 
     return new Response(
       JSON.stringify({
@@ -74,15 +74,32 @@ export default async function handler(request: Request): Promise<Response> {
   }
 }
 
-async function routeToProvider(messages: ChatMessage[]): Promise<{ reply: string; provider: string; model: string }> {
+async function routeToProvider(
+  messages: ChatMessage[],
+  confidential: boolean,
+): Promise<{ reply: string; provider: string; model: string }> {
   const groqKey = process.env.GROQ_API_KEY;
   const openRouterKey = process.env.OPENROUTER_API_KEY;
+  const ollamaUrl = process.env.OLLAMA_API_URL;
+  const ollamaModel = process.env.OLLAMA_MODEL || 'llama3.1:8b';
 
   // Build chat history with Tesserect system prompt
   const chatMessages = [
     { role: 'system' as const, content: TESSERECT_SYSTEM_PROMPT },
     ...messages.map(m => ({ role: m.role, content: m.content })),
   ];
+
+  // Desktop/local confidential mode: prefer local LLM via OLLAMA_API_URL
+  if (confidential && ollamaUrl) {
+    try {
+      const localReply = await callOllamaChat(ollamaUrl, ollamaModel, chatMessages);
+      if (localReply) {
+        return { reply: localReply, provider: 'ollama', model: ollamaModel };
+      }
+    } catch {
+      // If local fails, fall through to cloud chain as a last resort
+    }
+  }
 
   if (groqKey) {
     try {
@@ -153,4 +170,28 @@ async function callChatApi(
   const data = (await resp.json()) as { choices?: Array<{ message?: { content?: string } }> };
   return data.choices?.[0]?.message?.content?.trim() || null;
 }
+
+async function callOllamaChat(
+  baseUrl: string,
+  model: string,
+  messages: Array<{ role: 'system' | 'user' | 'assistant'; content: string }>,
+): Promise<string | null> {
+  const url = `${baseUrl.replace(/\/$/, '')}/v1/chat/completions`;
+  const resp = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model,
+      messages,
+      temperature: 0.4,
+      max_tokens: 800,
+    }),
+  });
+  if (!resp.ok) return null;
+  const data = (await resp.json()) as { choices?: Array<{ message?: { content?: string } }> };
+  return data.choices?.[0]?.message?.content?.trim() || null;
+}
+
 
