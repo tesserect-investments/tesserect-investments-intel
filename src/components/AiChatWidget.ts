@@ -88,8 +88,7 @@ export function mountAiChatWidget(): void {
       if (state.messages.length === 0) {
         state.messages.push({
           role: 'assistant',
-          content:
-            'Hi, I am Tesserect AI. I can help you reason about trade corridors, ports, Gulf investments, and economic intelligence. What would you like to explore?',
+          content: t('aiChat.greeting'),
         });
         renderMessages();
       }
@@ -148,10 +147,10 @@ export function mountAiChatWidget(): void {
       } else if (data.error) {
         state.messages.push({ role: 'assistant', content: `Error: ${data.error}` });
       }
-    } catch (err) {
+    } catch {
       state.messages.push({
         role: 'assistant',
-        content: 'Tesserect AI is unavailable right now. Please try again later.',
+        content: t('aiChat.unavailableTryAgain'),
       });
     } finally {
       state.sending = false;
@@ -164,8 +163,7 @@ export function mountAiChatWidget(): void {
       // Placeholder for desktop-only doc upload wiring via Tauri/sidecar.
       state.messages.push({
         role: 'assistant',
-        content:
-          'Document upload is available in the desktop app. In this build, files are not yet wired into Tesserect AI.',
+        content: t('aiChat.uploadPlaceholder'),
       });
       renderMessages();
     });

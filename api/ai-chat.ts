@@ -19,15 +19,18 @@ const TESSERECT_SYSTEM_PROMPT =
   'mode is only available in the desktop app using a local model. Do not fabricate Tesserect products; stick to ' +
   'what a trade intelligence dashboard can reasonably do (maps, ports, corridors, markets, economic signals).';
 
-export default async function handler(request: Request): Promise<Response> {
-  if (isDisallowedOrigin(request)) {
-    return new Response(JSON.stringify({ error: 'Origin not allowed' }), {
-      status: 403,
-      headers: { 'Content-Type': 'application/json' },
-    });
-  }
+const UNAVAILABLE_MSG =
+  'Tesserect AI is unavailable right now. Please try again later.';
 
+export default async function handler(request: Request): Promise<Response> {
   const corsHeaders = getCorsHeaders(request);
+
+  if (isDisallowedOrigin(request)) {
+    return new Response(
+      JSON.stringify({ reply: UNAVAILABLE_MSG, error: 'Origin not allowed', provider: '', model: '' }),
+      { status: 200, headers: { 'Content-Type': 'application/json', ...corsHeaders } },
+    );
+  }
 
   if (request.method === 'OPTIONS') {
     return new Response(null, { status: 204, headers: corsHeaders });
@@ -41,25 +44,56 @@ export default async function handler(request: Request): Promise<Response> {
   }
 
   try {
-    const body = (await request.json()) as ChatRequestBody;
+    let body: ChatRequestBody;
+    try {
+      body = (await request.json()) as ChatRequestBody;
+    } catch {
+      return new Response(
+        JSON.stringify({
+          reply: UNAVAILABLE_MSG,
+          provider: '',
+          model: '',
+        }),
+        {
+          status: 200,
+          headers: { 'Content-Type': 'application/json', ...corsHeaders },
+        },
+      );
+    }
+
     const messages = Array.isArray(body.messages) ? body.messages : [];
     const userMessages = messages.filter(m => m && typeof m.content === 'string');
 
     if (userMessages.length === 0) {
-      return new Response(JSON.stringify({ error: 'No messages provided' }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json', ...corsHeaders },
-      });
+      return new Response(
+        JSON.stringify({
+          reply: 'Please send a message to continue.',
+          provider: '',
+          model: '',
+        }),
+        {
+          status: 200,
+          headers: { 'Content-Type': 'application/json', ...corsHeaders },
+        },
+      );
     }
 
-    const { reply, provider, model } = await routeToProvider(userMessages, body.confidential === true);
+    let reply: string;
+    let provider: string;
+    let model: string;
+    try {
+      const result = await routeToProvider(userMessages, body.confidential === true);
+      reply = result.reply;
+      provider = result.provider;
+      model = result.model;
+    } catch {
+      reply = UNAVAILABLE_MSG;
+      provider = '';
+      model = '';
+    }
 
     return new Response(
-      JSON.stringify({
-        reply,
-        provider,
-        model,
-      }),
+      JSON.stringify({ reply, provider, model }),
       {
         status: 200,
         headers: { 'Content-Type': 'application/json', ...corsHeaders },
@@ -67,10 +101,18 @@ export default async function handler(request: Request): Promise<Response> {
     );
   } catch (err) {
     const mapped = mapErrorToResponse(err);
-    return new Response(JSON.stringify({ error: mapped.body.error }), {
-      status: mapped.status,
-      headers: { 'Content-Type': 'application/json', ...corsHeaders },
-    });
+    return new Response(
+      JSON.stringify({
+        reply: UNAVAILABLE_MSG,
+        error: mapped.body.error,
+        provider: '',
+        model: '',
+      }),
+      {
+        status: 200,
+        headers: { 'Content-Type': 'application/json', ...corsHeaders },
+      },
+    );
   }
 }
 

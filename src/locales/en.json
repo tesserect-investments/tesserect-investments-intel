@@ -1945,6 +1945,11 @@
       }
     }
   },
+  "aiChat": {
+    "unavailableTryAgain": "Tesserect AI is unavailable right now. Please try again later.",
+    "uploadPlaceholder": "Document upload is available in the desktop app. In this build, files are not yet wired into Tesserect AI.",
+    "greeting": "Hi, I am Tesserect AI. I can help you reason about trade corridors, ports, Gulf investments, and economic intelligence. What would you like to explore?"
+  },
   "common": {
     "loading": "Loading...",
     "error": "Error",
@@ -1999,6 +2004,8 @@
     "cached": "CACHED",
     "unavailable": "UNAVAILABLE",
     "close": "Close",
+    "open": "Open",
+    "send": "Send",
     "currentVariant": "(current)",
     "retry": "Retry",
     "retrying": "Retrying...",
