@@ -1,6 +1,5 @@
 export const config = { runtime: 'edge' };
 
-import { mapErrorToResponse } from '../server/error-mapper';
 import { getCorsHeaders, isDisallowedOrigin } from '../server/cors';
 
 type ChatMessage = { role: 'user' | 'assistant'; content: string };
@@ -100,11 +99,11 @@ export default async function handler(request: Request): Promise<Response> {
       },
     );
   } catch (err) {
-    const mapped = mapErrorToResponse(err);
+    const errMessage = err instanceof Error ? err.message : 'Unknown error';
     return new Response(
       JSON.stringify({
         reply: UNAVAILABLE_MSG,
-        error: mapped.body.error,
+        error: errMessage,
         provider: '',
         model: '',
       }),
