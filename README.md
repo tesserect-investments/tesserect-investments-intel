@@ -1351,6 +1351,21 @@ This runs the frontend without the API layer. Panels that require server-side pr
 | **Raspberry Pi / ARM** | Partial                 | `vercel dev` edge runtime emulation may not work on ARM. Use Option 1 (deploy to Vercel) or Option 3 (static frontend) instead |
 | **Docker**             | Planned                 | See [Roadmap](#roadmap)                                                                                                        |
 
+### Ship Traffic (AIS) — API to connect
+
+The **Ship Traffic** map layer shows vessel density zones and AIS disruptions (e.g. chokepoint congestion, gap spikes). To enable it:
+
+1. **Get an AIS API key** (free): [https://aisstream.io](https://aisstream.io) → sign up and create an API key.
+2. **Set the key** in your environment:
+   - **Vercel:** Settings → Environment Variables → add `AISSTREAM_API_KEY` = your key.
+   - **Local / desktop:** add to `.env` or `.env.local`: `AISSTREAM_API_KEY=your_key`.
+3. **Web (Vercel) only:** The app does not connect to AISStream from the browser directly. You need a **relay** that holds the WebSocket to AISStream and exposes HTTP snapshot endpoints. Deploy the included relay (see below), then set:
+   - `WS_RELAY_URL` = your relay’s HTTPS base URL (e.g. `https://your-relay.up.railway.app`).
+   - `VITE_WS_RELAY_URL` = same URL but with `wss://` for the client (if the app uses it for live WS).
+4. **Desktop (Tauri):** The sidecar can use `AISSTREAM_API_KEY` alone; relay URL is optional depending on your desktop build.
+
+**Upstream API:** `wss://stream.aisstream.io/v0/stream` (authenticated with your API key). The relay script connects to this and serves aggregated density/disruption data to the dashboard.
+
 ### Railway Relay (Optional)
 
 For live AIS vessel tracking and OpenSky aircraft data, deploy the WebSocket relay on Railway:

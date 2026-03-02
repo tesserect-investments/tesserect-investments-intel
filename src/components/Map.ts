@@ -331,6 +331,7 @@ export class MapComponent {
     const financeLayers: (keyof MapLayers)[] = [
       'stockExchanges', 'financialCenters', 'centralBanks', 'commodityHubs', // finance ecosystem
       'cables', 'pipelines', 'outages',                   // infrastructure
+      'ais',                                              // ship traffic & density
       'sanctions', 'economic', 'waterways',               // geopolitical/economic
       'natural', 'weather',                               // natural events
     ];

@@ -3026,6 +3026,7 @@ export class DeckGLMap {
           { key: 'commodityHubs', label: t('components.deckgl.layers.commodityHubs'), icon: '&#128230;' },
           { key: 'gulfInvestments', label: t('components.deckgl.layers.gulfInvestments'), icon: '&#127760;' },
           { key: 'tradeRoutes', label: t('components.deckgl.layers.tradeRoutes'), icon: '&#128674;' },
+          { key: 'ais', label: t('components.deckgl.layers.shipTraffic'), icon: '&#128674;' },
           { key: 'cables', label: t('components.deckgl.layers.underseaCables'), icon: '&#128268;' },
           { key: 'pipelines', label: t('components.deckgl.layers.pipelines'), icon: '&#128738;' },
           { key: 'outages', label: t('components.deckgl.layers.internetOutages'), icon: '&#128225;' },
